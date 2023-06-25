@@ -29,7 +29,9 @@ const Hero = () => {
         />
         <div className='relative z-20 text-center pt-7'>
           <div id='text-seccion' className='flex flex-col gap-7 items-center'>
-            <h2 className='font-satisfy text-[34px]'>Para nuestros clientes</h2>
+            <h2 className='font-satisfy text-[34px] text-backPinkOsucuro'>
+              Para nuestros clientes
+            </h2>
             <p className='text-[20px]'>Servicios de Spa de alta calidad</p>
             <img className='w-[70px] h-[50px]' src={flor}></img>
             <p className='text-[16px] w-80'>
