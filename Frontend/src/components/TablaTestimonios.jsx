@@ -4,6 +4,7 @@ import { Card, Typography } from '@material-tailwind/react'
 import React from 'react'
 import editar from '../assets/img/editar.svg'
 import eliminar from '../assets/img/eliminar.svg'
+import ModalTestimoniosAdmin from './ModalTestimoniosAdmin'
 
 const TABLE_HEAD = ['Nombre', 'Sexo', 'Testimonoios', 'Acciones']
 
@@ -40,9 +41,7 @@ function TablaTestimonios() {
     <div>
       <div className='flex justify-around'>
         <h3 className='text-center mb-4 text-xl'>Testimonoios</h3>
-        <div className='bg-backPinkOsucuro rounded w-[35px] h-[35px]'>
-          <img src={editar}></img>
-        </div>
+        <ModalTestimoniosAdmin />
       </div>
       <Card className='overflow-scroll h-full w-[350px]'>
         <table className='w-[350px] min-w-max table-auto text-left'>

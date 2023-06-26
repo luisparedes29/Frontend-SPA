@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import editar from '../assets/img/editar.svg'
 import { Button, Label, Modal, Select, TextInput } from 'flowbite-react'
 
-export default function Example() {
+export default function ModalReservaciones() {
   const [openModal, setOpenModal] = useState()
   const props = { openModal, setOpenModal }
 
@@ -26,57 +26,100 @@ export default function Example() {
           <form>
             <div className='space-y-6'>
               <h3 className='text-xl font-medium text-gray-900 dark:text-white'>
-                Ingresa los datos del Servicio
+                Ingresa los datos de la Reservacion
               </h3>
               <div>
                 <div className='mb-2 block'>
-                  <Label htmlFor='servicio' value='Servicio' />
+                  <Label htmlFor='nombre' value='Nombre' />
                 </div>
                 <TextInput
-                  id='servicio'
+                  id='nombre'
                   type='text'
-                  placeholder='Ingresa el nombre del servicio'
+                  placeholder='Ingresa el nombre de la persona'
                   required
                 />
               </div>
               <div>
                 <div className='mb-2 block'>
-                  <Label htmlFor='Precio' value='Precio' />
+                  <Label htmlFor='Cedula' value='Cedula' />
                 </div>
                 <TextInput
-                  id='Precio'
+                  id='Cedula'
+                  type='text'
+                  placeholder='Ingresa la cedula de identidad'
+                  required
+                />
+              </div>
+              <div>
+                <div className='mb-2 block'>
+                  <Label htmlFor='correo' value='Correo' />
+                </div>
+                <TextInput
+                  id='Cedula'
+                  type='email'
+                  placeholder='Ingresa tu correo ejemplo@gmail.com'
+                  required
+                />
+              </div>
+              <div className='max-w-md' id='select'>
+                <div className='mb-2 block'>
+                  <Label htmlFor='servicio' value='Selecciona el servicio' />
+                </div>
+                <Select id='servicio' required>
+                  <option>United States</option>
+                  <option>Canada</option>
+                  <option>France</option>
+                  <option>Germany</option>
+                </Select>
+              </div>
+              <div>
+                <div className='mb-2 block'>
+                  <Label htmlFor='cantidad' value='Cantidad de personas' />
+                </div>
+                <TextInput
+                  id='cantidad'
                   type='number'
-                  placeholder='Ingresa el Precio'
+                  placeholder='Ingresa la cantidad de personas'
                   min='1'
                   required
                 />
               </div>
               <div>
                 <div className='mb-2 block'>
-                  <Label htmlFor='Duracion' value='Duracion' />
+                  <Label htmlFor='' value='Fecha' />
                 </div>
                 <TextInput
-                  id='Duracion'
-                  type='time'
-                  placeholder='Ingresa el tiempo'
+                  id='Fecha'
+                  type='date'
+                  placeholder='Ingresa la Fecha'
                   required
                 />
               </div>
 
               <div>
                 <div className='mb-2 block'>
-                  <Label htmlFor='descripcion' value='Descripcion' />
+                  <Label htmlFor='Hora' value='Hora' />
                 </div>
                 <TextInput
-                  id='descripcion'
-                  type='text'
-                  placeholder='Ingresa la descripcion'
+                  id='Hora'
+                  type='date'
+                  placeholder='Ingresa la Hora'
+                  required
+                />
+              </div>
+              <div>
+                <div className='mb-2 block'>
+                  <Label htmlFor='codigo' value='Codigo de Descuento' />
+                </div>
+                <TextInput
+                  id='codigo'
+                  placeholder='Ingresa el codigo de Descuento'
                   required
                 />
               </div>
               <div className='w-full flex justify-center'>
                 <Button type='submit' className='bg-backPinkOsucuro'>
-                  Crear TablaReservaciones
+                  Crear Reservacion
                 </Button>
               </div>
             </div>

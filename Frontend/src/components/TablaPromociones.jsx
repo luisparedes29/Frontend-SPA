@@ -4,8 +4,9 @@ import { Card, Typography } from '@material-tailwind/react'
 import React from 'react'
 import editar from '../assets/img/editar.svg'
 import eliminar from '../assets/img/eliminar.svg'
+import ModalPromociones from './ModalPromociones'
 
-const TABLE_HEAD = ['Servicio', 'Precio', 'Descuento', 'CODIGO', 'Acciones']
+const TABLE_HEAD = ['Servicio', 'Descuento', 'CODIGO', 'Acciones']
 
 const TABLE_ROWS = [
   {
@@ -40,9 +41,7 @@ export default function TablaPromociones() {
     <div>
       <div className='flex justify-around'>
         <h3 className='text-center mb-4 text-xl'>Promociones</h3>
-        <div className='bg-backPinkOsucuro rounded w-[35px] h-[35px]'>
-          <img src={editar}></img>
-        </div>
+        <ModalPromociones />
       </div>
       <Card className='overflow-scroll h-full w-[350px]'>
         <table className='w-[350px] min-w-max table-auto text-left'>
@@ -89,15 +88,6 @@ export default function TablaPromociones() {
                       className='font-normal'
                     >
                       {job}
-                    </Typography>
-                  </td>
-                  <td className={classes}>
-                    <Typography
-                      variant='small'
-                      color='blue-gray'
-                      className='font-normal'
-                    >
-                      {date}
                     </Typography>
                   </td>
                   <td className={`${classes} bg-blue-gray-50/50`}>

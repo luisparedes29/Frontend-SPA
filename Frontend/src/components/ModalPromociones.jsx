@@ -1,15 +1,14 @@
-import React, { useState } from 'react'
+import { Button, Label, Modal, TextInput, Select } from 'flowbite-react'
+import React from 'react'
+import { useState } from 'react'
 import editar from '../assets/img/editar.svg'
-import { Button, Label, Modal, Select, TextInput } from 'flowbite-react'
-
-export default function ModalServicios() {
+const ModalPromociones = () => {
   const [openModal, setOpenModal] = useState()
   const props = { openModal, setOpenModal }
-
   return (
     <>
       <Button
-        className='bg-backPinkOsucuro p-0 mb-3'
+        className=' bg-backPinkOsucuro p-0 mb-3'
         onClick={() => props.setOpenModal('form-elements')}
       >
         <img className='w-[27px]' src={editar}></img>
@@ -26,57 +25,43 @@ export default function ModalServicios() {
           <form>
             <div className='space-y-6'>
               <h3 className='text-xl font-medium text-gray-900 dark:text-white'>
-                Ingresa los datos del Servicio
+                Ingresa datos de la Promocione
               </h3>
-              <div>
+              <div className='max-w-md' id='select'>
                 <div className='mb-2 block'>
-                  <Label htmlFor='servicio' value='Servicio' />
+                  <Label htmlFor='Servicio' value='Selecciona Servicio' />
                 </div>
-                <TextInput
-                  id='servicio'
-                  type='text'
-                  placeholder='Ingresa el nombre del servicio'
-                  required
-                />
+                <Select id='Servicio' required>
+                  <option>Hombre</option>
+                  <option>Mujer</option>
+                </Select>
               </div>
               <div>
                 <div className='mb-2 block'>
-                  <Label htmlFor='Precio' value='Precio' />
+                  <Label htmlFor='Descuento' value='Descuento' />
                 </div>
                 <TextInput
-                  id='Precio'
+                  id='Descuento'
                   type='number'
-                  placeholder='Ingresa el Precio'
+                  placeholder='Ingresa el Descuento'
                   min='1'
                   required
                 />
               </div>
               <div>
                 <div className='mb-2 block'>
-                  <Label htmlFor='Duracion' value='Duracion' />
+                  <Label htmlFor='CODIGO' value='Codigo de Descuento' />
                 </div>
                 <TextInput
-                  id='Duracion'
-                  type='time'
-                  placeholder='Ingresa el tiempo'
-                  required
-                />
-              </div>
-
-              <div>
-                <div className='mb-2 block'>
-                  <Label htmlFor='descripcion' value='Descripcion' />
-                </div>
-                <TextInput
-                  id='descripcion'
+                  id='CODIGO'
                   type='text'
-                  placeholder='Ingresa la descripcion'
+                  placeholder='Ingresa el Codigo'
                   required
                 />
               </div>
               <div className='w-full flex justify-center'>
                 <Button type='submit' className='bg-backPinkOsucuro'>
-                  Crear Servicio
+                  Crear Promocion
                 </Button>
               </div>
             </div>
@@ -86,3 +71,5 @@ export default function ModalServicios() {
     </>
   )
 }
+
+export default ModalPromociones

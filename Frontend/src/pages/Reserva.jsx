@@ -27,7 +27,19 @@ const Reserva = () => {
             <div className='mb-4 flex flex-col gap-2'>
               <Input size='lg' label='Nombre' className='bg-white' />
               <Input size='lg' label='Cedula' className='bg-white' />
-              <Input size='lg' label='Correo' className='bg-white' />
+              <Input
+                type='email'
+                size='lg'
+                label='Correo'
+                className='bg-white'
+              />
+              <Input
+                type='number'
+                size='lg'
+                label='Cantidad de personas'
+                className='bg-white'
+                min='1'
+              />
               <Select label='Servicios' className='bg-white'>
                 <Option>Material Tailwind HTML</Option>
                 <Option>Material Tailwind React</Option>
@@ -44,8 +56,8 @@ const Reserva = () => {
               <Input type='time' size='lg' className='bg-white' />
             </div>
             <div className='flex justify-center'>
-              <Button className='mt-6 w-2/3 bg-backPinkOsucuro'>
-                Registro
+              <Button type='submit' className='mt-6 w-2/3 bg-backPinkOsucuro'>
+                Reservar
               </Button>
             </div>
           </form>

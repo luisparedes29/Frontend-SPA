@@ -1,15 +1,14 @@
-import React, { useState } from 'react'
+import { Button, Label, Modal, TextInput, Select } from 'flowbite-react'
+import React from 'react'
+import { useState } from 'react'
 import editar from '../assets/img/editar.svg'
-import { Button, Label, Modal, Select, TextInput } from 'flowbite-react'
-
-export default function ModalServicios() {
+const ModalTestimoniosAdmin = () => {
   const [openModal, setOpenModal] = useState()
   const props = { openModal, setOpenModal }
-
   return (
     <>
       <Button
-        className='bg-backPinkOsucuro p-0 mb-3'
+        className=' bg-backPinkOsucuro p-0 mb-3'
         onClick={() => props.setOpenModal('form-elements')}
       >
         <img className='w-[27px]' src={editar}></img>
@@ -26,57 +25,42 @@ export default function ModalServicios() {
           <form>
             <div className='space-y-6'>
               <h3 className='text-xl font-medium text-gray-900 dark:text-white'>
-                Ingresa los datos del Servicio
+                Ingresa datos del testimonio
               </h3>
               <div>
                 <div className='mb-2 block'>
-                  <Label htmlFor='servicio' value='Servicio' />
+                  <Label htmlFor='nombre' value='Nombre' />
                 </div>
                 <TextInput
-                  id='servicio'
+                  id='nombre'
                   type='text'
-                  placeholder='Ingresa el nombre del servicio'
+                  placeholder='Nombre'
                   required
                 />
               </div>
-              <div>
+              <div className='max-w-md' id='select'>
                 <div className='mb-2 block'>
-                  <Label htmlFor='Precio' value='Precio' />
+                  <Label htmlFor='sexo' value='Selecciona sexo' />
                 </div>
-                <TextInput
-                  id='Precio'
-                  type='number'
-                  placeholder='Ingresa el Precio'
-                  min='1'
-                  required
-                />
+                <Select id='sexo' required>
+                  <option>Hombre</option>
+                  <option>Mujer</option>
+                </Select>
               </div>
               <div>
                 <div className='mb-2 block'>
-                  <Label htmlFor='Duracion' value='Duracion' />
+                  <Label htmlFor='testimonio' value='Testimonio' />
                 </div>
                 <TextInput
-                  id='Duracion'
-                  type='time'
-                  placeholder='Ingresa el tiempo'
-                  required
-                />
-              </div>
-
-              <div>
-                <div className='mb-2 block'>
-                  <Label htmlFor='descripcion' value='Descripcion' />
-                </div>
-                <TextInput
-                  id='descripcion'
+                  id='testimonio'
                   type='text'
-                  placeholder='Ingresa la descripcion'
+                  placeholder='Ingresa testimonio'
                   required
                 />
               </div>
               <div className='w-full flex justify-center'>
                 <Button type='submit' className='bg-backPinkOsucuro'>
-                  Crear Servicio
+                  Enviar testimonio
                 </Button>
               </div>
             </div>
@@ -86,3 +70,5 @@ export default function ModalServicios() {
     </>
   )
 }
+
+export default ModalTestimoniosAdmin
