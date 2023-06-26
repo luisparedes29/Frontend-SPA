@@ -9,9 +9,7 @@ import imgPromociones from '../assets/img/imgPromociones.jpg'
 import { Link } from 'react-router-dom'
 
 import React from 'react'
-const CardPromocion = () => {
-  let precio = 200
-
+const CardPromocion = ({ promocion }) => {
   return (
     <>
       <div className='w-[300px]'>
@@ -29,13 +27,13 @@ const CardPromocion = () => {
           </CardHeader>
           <CardBody>
             <Typography variant='h6' color='blue' className='uppercase mb-4'>
-              SERVICIO
+              {promocion.servicio}
             </Typography>
             <Typography color='gray' className='font-normal'>
-              Descuento: {precio}
+              Descuento: {promocion.descuento}
             </Typography>
             <Typography color='gray' className='font-normal mb-8'>
-              Codigo
+              Codigo: {promocion.codigoDescuento}
             </Typography>
             <Link to='/Reserva'>
               <Button

@@ -6,20 +6,27 @@ import {
   Button,
 } from '@material-tailwind/react'
 import React from 'react'
-const CardServicios = () => {
+import { Link } from 'react-router-dom'
+const CardServicios = ({ servicio }) => {
   return (
     <Card className='w-[200px] bg-backPink'>
       <CardBody>
         <Typography variant='h5' color='blue-gray' className='mb-2 text-center'>
-          Servicio
+          {servicio.servicio}
         </Typography>
         <div>
-          <p className='text-[20px]'>Precio: </p>
-          <p className='text-[18px]'>Duracion: </p>
+          <p className='text-[20px]'>
+            <span className='font-bold'>Precio:</span> {servicio.precio}
+          </p>
+          <p className='text-[18px]'>
+            <span className='font-bold'>Duracion:</span> {servicio.duracion}{' '}
+          </p>
         </div>
       </CardBody>
       <CardFooter className='pt-0 flex justify-center'>
-        <Button className='bg-backPinkOsucuro rounded-3xl'>Reserva</Button>
+        <Link to='/Reserva'>
+          <Button className='bg-backPinkOsucuro rounded-3xl'>Reserva</Button>
+        </Link>
       </CardFooter>
     </Card>
   )

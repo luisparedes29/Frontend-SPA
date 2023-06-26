@@ -8,7 +8,7 @@ import {
 import perfilMujer from '../assets/img/perfilMujer.png'
 import perfilHombre from '../assets/img/perfilHombre.png'
 import React from 'react'
-const CardTestimonios = () => {
+const CardTestimonios = ({ testimonio }) => {
   return (
     <article>
       <Card
@@ -25,13 +25,13 @@ const CardTestimonios = () => {
           <Avatar
             size='lg'
             variant='circular'
-            src={perfilHombre}
+            src={testimonio.sexo == 'Femenino' ? perfilMujer : perfilHombre}
             alt='candice wu'
           />
           <div className='flex w-full flex-col gap-0.5'>
             <div className='flex items-center justify-between'>
               <Typography variant='h5' color='blue-gray'>
-                Candice Wu
+                {testimonio.nombre}
               </Typography>
               {/* <div className='5 flex items-center gap-0'>
               <StarIcon className='h-5 w-5 text-yellow-700' />
@@ -44,11 +44,7 @@ const CardTestimonios = () => {
           </div>
         </CardHeader>
         <CardBody className='mb-6 p-0'>
-          <Typography>
-            &quot;I found solution to all my design needs from Creative Tim. I
-            use them as a freelancer in my hobby projects for fun! And its
-            really affordable, very humble guys !!!&quot;
-          </Typography>
+          <Typography>{testimonio.testimonio}</Typography>
         </CardBody>
       </Card>
     </article>

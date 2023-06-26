@@ -5,10 +5,11 @@ import wave from '../assets/img/wave.svg'
 import flor from '../assets/img/florLanding.png'
 import IMG from '../assets/img/imgHero.jpg'
 import Footer from './Footer'
-import { Contexto } from '../context/context'
+import { ServiciosContext } from '../context/ServiciosContext'
+import { Link } from 'react-router-dom'
+import React from 'react'
 const Hero = () => {
-  console.log(Contexto)
-  const { name, setName } = useContext(Contexto)
+  const { servicios } = useContext(ServiciosContext)
   return (
     <>
       <section className='bg-hero-Img h-[90vh] bg-no-repeat bg-cover bg-center'>
@@ -17,9 +18,8 @@ const Hero = () => {
           <div className='flex flex-col items-center'>
             <h1 className='text-3xl font-workSans p-7 text-white font-normal leading-10 tracking-[3px] break-words'>
               Sumérgete en la serenidad absoluta Explora nuestro oasis de
-              bienestar {name}
+              bienestar
             </h1>
-            <button onClick={() => setName('quiiiii')}>holi</button>
             <BtnReserva />
           </div>
         </div>
@@ -48,41 +48,27 @@ const Hero = () => {
         </div>
 
         <div className='flex flex-col items-center gap-14'>
-          <article className='flex flex-col w-[300px]'>
-            <figure className='w-full flex flex-col justify-center items-center gap-6'>
-              <div className='w-8/12 h-28 flex justify-center'>
-                <img src={IMG} alt='' />
-              </div>
-              <figcaption>
-                <p>Medi-SPA y Masaje</p>
-              </figcaption>
-              <div className='bg-backPinkOsucuro h-[2px] w-3/5'></div>
-            </figure>
-          </article>
-
-          <article className='flex flex-col w-[300px]'>
-            <figure className='w-full flex flex-col justify-center items-center gap-6'>
-              <div className='w-8/12 h-28 flex justify-center'>
-                <img src={IMG} alt='' />
-              </div>
-              <figcaption>
-                <p>Medi-SPA y Masaje</p>
-              </figcaption>
-              <div className='bg-backPinkOsucuro h-[2px] w-3/5'></div>
-            </figure>
-          </article>
-
-          <article className='flex flex-col w-[300px]'>
-            <figure className='w-full flex flex-col justify-center items-center gap-6'>
-              <div className='w-8/12 h-28 flex justify-center'>
-                <img src={IMG} alt='' />
-              </div>
-              <figcaption>
-                <p>Medi-SPA y Masaje</p>
-              </figcaption>
-              <div className='bg-backPinkOsucuro h-[2px] w-3/5'></div>
-            </figure>
-          </article>
+          {servicios ? (
+            servicios.slice(0, 4).map((servicio) => (
+              <Link to='/Reserva' key={servicio._id}>
+                <article key={servicio._id} className='flex flex-col w-[300px]'>
+                  <figure className='w-full flex flex-col justify-center items-center gap-6'>
+                    <div className='w-8/12 h-28 flex justify-center'>
+                      <img src={IMG} alt='imagen predeterminada' />
+                    </div>
+                    <figcaption>
+                      <p>{servicio.servicio}</p>
+                    </figcaption>
+                    <div className='bg-backPinkOsucuro h-[2px] w-3/5'></div>
+                  </figure>
+                </article>
+              </Link>
+            ))
+          ) : (
+            <h2 className='font-satisfy text-center text-[60px]'>
+              No estamos ofreciendo servicios
+            </h2>
+          )}
         </div>
         <div className='flex justify-center pb-16'>
           <BtnReserva />

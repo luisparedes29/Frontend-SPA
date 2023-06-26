@@ -8,20 +8,35 @@ import Reserva from './pages/Reserva'
 import Servicios from './pages/Servicios'
 import Admin from './pages/Admin'
 import ContextFunctions from './context/ContextFunctions'
+import { PromocionesProvider } from './context/PromocionesContext'
+import { TestimoniosProvider } from './context/TestimoniosContext'
+import { ReservacionesProvider } from './context/ReservacionesContext'
+import { ServiciosProvider } from './context/ServiciosContext'
 
 function App() {
   return (
     <ContextFunctions>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<Landing />}></Route>
-          <Route path='/Servicios' element={<Servicios />}></Route>
-          <Route path='/Reserva' element={<Reserva />}></Route>
-          <Route path='/Promociones' element={<Promociones />}></Route>{' '}
-          <Route path='/Login' element={<Login />}></Route>
-          <Route path='/Admin' element={<Admin />}></Route>
-        </Routes>
-      </BrowserRouter>
+      <PromocionesProvider>
+        <TestimoniosProvider>
+          <ReservacionesProvider>
+            <ServiciosProvider>
+              <BrowserRouter>
+                <Routes>
+                  <Route path='/' element={<Landing />}></Route>
+                  <Route path='/Servicios' element={<Servicios />}></Route>
+                  <Route path='/Reserva' element={<Reserva />}></Route>
+                  <Route
+                    path='/Promociones'
+                    element={<Promociones />}
+                  ></Route>{' '}
+                  <Route path='/Login' element={<Login />}></Route>
+                  <Route path='/Admin' element={<Admin />}></Route>
+                </Routes>
+              </BrowserRouter>
+            </ServiciosProvider>
+          </ReservacionesProvider>
+        </TestimoniosProvider>
+      </PromocionesProvider>
     </ContextFunctions>
   )
 }

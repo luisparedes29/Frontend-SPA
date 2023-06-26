@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import CardServicios from '../components/cardServicios'
 import waveServicios from '../assets/img/waveServicios.svg'
 import CardTestimonios from '../components/CardTestimonios'
 import ModalTestimonios from '../components/ModalTestimonios'
+import { TestimoniosContext } from '../context/TestimoniosContext'
+import { ServiciosContext } from '../context/ServiciosContext'
 
 const Servicios = () => {
+  const { testimonios } = useContext(TestimoniosContext)
+  const { servicios } = useContext(ServiciosContext)
   return (
     <div className='flex flex-col gap-8'>
       <Header condicion={true} />
@@ -27,9 +31,13 @@ const Servicios = () => {
             id='lista de servicios'
             className='w-full min-h-[45vh] bg-servicios-Img bg-no-repeat bg-cover bg-center flex flex-col gap-5 p-7 justify-center items-center'
           >
-            <CardServicios />
-            <CardServicios />
-            <CardServicios />
+            {servicios ? (
+              servicios.map((servicio) => (
+                <CardServicios key={servicio._id} servicio={servicio} />
+              ))
+            ) : (
+              <h3>No contamos con servicios por los momentos</h3>
+            )}
           </div>
         </section>
 
@@ -44,8 +52,18 @@ const Servicios = () => {
               Testimonios
             </h2>
             <section className='flex flex-col gap-6 mb-5'>
-              <CardTestimonios />
-              <CardTestimonios />
+              {testimonios ? (
+                testimonios
+                  .slice(0, 3)
+                  .map((testimonio) => (
+                    <CardTestimonios
+                      key={testimonio._id}
+                      testimonio={testimonio}
+                    />
+                  ))
+              ) : (
+                <h3 className='font-satisfy text-[60px]'>NO HAY TESTIMONIOS</h3>
+              )}
             </section>
           </div>
           <div className='flex justify-center mb-4'>
