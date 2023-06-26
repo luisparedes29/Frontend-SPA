@@ -28,12 +28,6 @@ const Reserva = () => {
               <Input size='lg' label='Nombre' className='bg-white' />
               <Input size='lg' label='Cedula' className='bg-white' />
               <Input size='lg' label='Correo' className='bg-white' />
-              <Input
-                type='password'
-                size='lg'
-                label='Contraseña'
-                className='bg-white'
-              />
               <Select label='Servicios' className='bg-white'>
                 <Option>Material Tailwind HTML</Option>
                 <Option>Material Tailwind React</Option>
