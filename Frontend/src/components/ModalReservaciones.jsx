@@ -33,7 +33,7 @@ export default function ModalReservaciones() {
                   <Label htmlFor='nombre' value='Nombre' />
                 </div>
                 <TextInput
-                  id='nombre'
+                  id='nombreReservacion'
                   type='text'
                   placeholder='Ingresa el nombre de la persona'
                   required
@@ -41,10 +41,10 @@ export default function ModalReservaciones() {
               </div>
               <div>
                 <div className='mb-2 block'>
-                  <Label htmlFor='Cedula' value='Cedula' />
+                  <Label htmlFor='CedulaReservacion' value='Cedula' />
                 </div>
                 <TextInput
-                  id='Cedula'
+                  id='CedulaReservacion'
                   type='text'
                   placeholder='Ingresa la cedula de identidad'
                   required
@@ -65,7 +65,7 @@ export default function ModalReservaciones() {
                 <div className='mb-2 block'>
                   <Label htmlFor='servicio' value='Selecciona el servicio' />
                 </div>
-                <Select id='servicio' required>
+                <Select id='servicioReservacion' required>
                   <option>United States</option>
                   <option>Canada</option>
                   <option>France</option>

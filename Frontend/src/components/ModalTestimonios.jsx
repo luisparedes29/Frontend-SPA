@@ -31,7 +31,7 @@ const ModalTestimonios = () => {
                   <Label htmlFor='nombre' value='Tu Nombre' />
                 </div>
                 <TextInput
-                  id='nombre'
+                  id='nombreTestimonio'
                   type='text'
                   placeholder='Ingresa tu nombre'
                   required
