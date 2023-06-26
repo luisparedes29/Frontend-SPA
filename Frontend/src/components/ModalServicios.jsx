@@ -2,17 +2,21 @@ import React, { useState } from 'react'
 import editar from '../assets/img/editar.svg'
 import { Button, Label, Modal, Select, TextInput } from 'flowbite-react'
 
-export default function ModalServicios() {
+export default function ModalServicios({ isEdit }) {
   const [openModal, setOpenModal] = useState()
   const props = { openModal, setOpenModal }
+
+  isEdit ? fetch('').then(() => {}) : fetch('').then(() => {})
 
   return (
     <>
       <Button
-        className='bg-backPinkOsucuro p-0 mb-3'
+        className={`${
+          isEdit ? 'bg-transparent ' : 'bg-backPinkOsucuro mb-3 '
+        } p-0 `}
         onClick={() => props.setOpenModal('form-elements')}
       >
-        <img className='w-[27px]' src={editar}></img>
+        <img className={`${isEdit ? 'w-4' : 'w-[27px]'}`} src={editar}></img>
       </Button>
       <Modal
         show={props.openModal === 'form-elements'}
@@ -76,7 +80,7 @@ export default function ModalServicios() {
               </div>
               <div className='w-full flex justify-center'>
                 <Button type='submit' className='bg-backPinkOsucuro'>
-                  Crear Servicio
+                  {isEdit ? 'Editar Servicio' : 'Crear servicio'}
                 </Button>
               </div>
             </div>

@@ -48,7 +48,7 @@ function TablaReservaciones() {
     <div>
       <div className='flex justify-around'>
         <h3 className='text-center mb-4 text-xl'>Reservaciones</h3>
-        <ModalReservaciones />
+        <ModalReservaciones isEdit={false} />
       </div>
 
       <Card className='overflow-scroll h-full w-[350px]'>
@@ -127,9 +127,7 @@ function TablaReservaciones() {
                   </td>
                   <td className={`${classes} bg-blue-gray-50/50`}>
                     <div className='flex gap-2 justify-center'>
-                      <button className='w-[20px]'>
-                        <img src={editar} />
-                      </button>
+                      <ModalReservaciones isEdit={true} />
                       <button className='w-[20px]'>
                         <img src={eliminar}></img>
                       </button>

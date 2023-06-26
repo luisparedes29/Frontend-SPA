@@ -4,9 +4,9 @@ import { Card, Typography } from '@material-tailwind/react'
 import React from 'react'
 import editar from '../assets/img/editar.svg'
 import eliminar from '../assets/img/eliminar.svg'
-import ModalPromociones from './ModalPromociones'
+import ModalUsuarios from './ModalUsuarios'
 
-const TABLE_HEAD = ['Servicio', 'Descuento', 'CODIGO', 'Acciones']
+const TABLE_HEAD = ['Servicio', 'Precio', 'Duracion', 'Descripcion', 'Acciones']
 
 const TABLE_ROWS = [
   {
@@ -36,12 +36,12 @@ const TABLE_ROWS = [
   },
 ]
 
-export default function TablaPromociones() {
+function TablaUsuarios() {
   return (
     <div>
       <div className='flex justify-around'>
-        <h3 className='text-center mb-4 text-xl'>Promociones</h3>
-        <ModalPromociones />
+        <h3 className='text-center mb-4 text-xl'>Usuarios</h3>
+        <ModalUsuarios isEdit={false} />
       </div>
       <Card className='overflow-scroll h-full w-[350px]'>
         <table className='w-[350px] min-w-max table-auto text-left'>
@@ -64,7 +64,7 @@ export default function TablaPromociones() {
             </tr>
           </thead>
           <tbody>
-            {TABLE_ROWS.map(({ name, job, date, descripcion }, index) => {
+            {TABLE_ROWS.map(({ name, job, date }, index) => {
               const isLast = index === TABLE_ROWS.length - 1
               const classes = isLast
                 ? 'p-2'
@@ -90,6 +90,15 @@ export default function TablaPromociones() {
                       {job}
                     </Typography>
                   </td>
+                  <td className={classes}>
+                    <Typography
+                      variant='small'
+                      color='blue-gray'
+                      className='font-normal'
+                    >
+                      {date}
+                    </Typography>
+                  </td>
                   <td className={`${classes} bg-blue-gray-50/50`}>
                     <Typography
                       as='a'
@@ -103,9 +112,7 @@ export default function TablaPromociones() {
                   </td>
                   <td className={`${classes} bg-blue-gray-50/50`}>
                     <div className='flex gap-2 justify-center'>
-                      <button className='w-[20px]'>
-                        <img src={editar} />
-                      </button>
+                      <ModalUsuarios isEdit={true} />
                       <button className='w-[20px]'>
                         <img src={eliminar}></img>
                       </button>
@@ -120,3 +127,5 @@ export default function TablaPromociones() {
     </div>
   )
 }
+
+export default TablaUsuarios

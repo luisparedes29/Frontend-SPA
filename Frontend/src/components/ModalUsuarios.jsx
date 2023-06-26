@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import editar from '../assets/img/editar.svg'
 import { Button, Label, Modal, TextInput } from 'flowbite-react'
 
-export default function ModalUsuarios() {
+export default function ModalUsuarios({ isEdit }) {
   const [openModal, setOpenModal] = useState(false)
   const [nombre, setNombre] = useState('')
   const [usuario, setUsuario] = useState('')
@@ -17,13 +17,17 @@ export default function ModalUsuarios() {
     setOpenModal(false)
   }
 
+  isEdit ? fetch('').then(() => {}) : fetch('').then(() => {})
+
   return (
     <>
       <Button
-        className='bg-backPinkOsucuro p-0 mb-3'
+        className={`${
+          isEdit ? 'bg-transparent ' : 'bg-backPinkOsucuro mb-3 '
+        } p-0 `}
         onClick={() => setOpenModal(true)}
       >
-        <img className='w-[27px]' src={editar} alt='Editar'></img>
+        <img className={`${isEdit ? 'w-4' : 'w-[27px]'}`} src={editar}></img>
       </Button>
       <Modal
         show={openModal}
@@ -80,7 +84,7 @@ export default function ModalUsuarios() {
               </div>
               <div className='w-full flex justify-center'>
                 <Button type='submit' className='bg-backPinkOsucuro'>
-                  Crear Usuario
+                  {isEdit ? 'Editar Usuario' : 'Crear Usuario'}
                 </Button>
               </div>
             </div>

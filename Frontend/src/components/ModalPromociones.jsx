@@ -2,16 +2,21 @@ import { Button, Label, Modal, TextInput, Select } from 'flowbite-react'
 import React from 'react'
 import { useState } from 'react'
 import editar from '../assets/img/editar.svg'
-const ModalPromociones = () => {
+const ModalPromociones = ({ isEdit }) => {
   const [openModal, setOpenModal] = useState()
   const props = { openModal, setOpenModal }
+
+  isEdit ? fetch('').then(() => {}) : fetch('').then(() => {})
+
   return (
     <>
       <Button
-        className=' bg-backPinkOsucuro p-0 mb-3'
+        className={`${
+          isEdit ? 'bg-transparent ' : 'bg-backPinkOsucuro mb-3 '
+        } p-0 `}
         onClick={() => props.setOpenModal('form-elements')}
       >
-        <img className='w-[27px]' src={editar}></img>
+        <img className={`${isEdit ? 'w-4' : 'w-[27px]'}`} src={editar}></img>
       </Button>
       <Modal
         show={props.openModal === 'form-elements'}
@@ -61,7 +66,7 @@ const ModalPromociones = () => {
               </div>
               <div className='w-full flex justify-center'>
                 <Button type='submit' className='bg-backPinkOsucuro'>
-                  Crear Promocion
+                  {isEdit ? 'Editar Promocion' : 'Crear Promocion'}
                 </Button>
               </div>
             </div>
