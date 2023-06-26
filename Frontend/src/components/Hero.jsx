@@ -1,11 +1,14 @@
-import React from 'react'
+import { useContext } from 'react'
 import Header from './Header'
 import BtnReserva from './BtnReserva'
 import wave from '../assets/img/wave.svg'
 import flor from '../assets/img/florLanding.png'
 import IMG from '../assets/img/imgHero.jpg'
 import Footer from './Footer'
+import { Contexto } from '../context/context'
 const Hero = () => {
+  console.log(Contexto)
+  const { name, setName } = useContext(Contexto)
   return (
     <>
       <section className='bg-hero-Img h-[90vh] bg-no-repeat bg-cover bg-center'>
@@ -14,8 +17,9 @@ const Hero = () => {
           <div className='flex flex-col items-center'>
             <h1 className='text-3xl font-workSans p-7 text-white font-normal leading-10 tracking-[3px] break-words'>
               Sumérgete en la serenidad absoluta Explora nuestro oasis de
-              bienestar
+              bienestar {name}
             </h1>
+            <button onClick={() => setName('quiiiii')}>holi</button>
             <BtnReserva />
           </div>
         </div>
