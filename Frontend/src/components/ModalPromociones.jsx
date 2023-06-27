@@ -4,10 +4,10 @@ import { useState, useRef, useContext } from 'react'
 import editar from '../assets/img/editar.svg'
 import { ServiciosContext } from '../context/ServiciosContext'
 import { PromocionesContext } from '../context/PromocionesContext'
-const ModalPromociones = ({ isEdit }) => {
+const ModalPromociones = ({ isEdit, _id = null }) => {
   const [openModal, setOpenModal] = useState()
   const { servicios } = useContext(ServiciosContext)
-  const { crearPromocion } = useContext(PromocionesContext)
+  const { crearPromocion, editarPromocion } = useContext(PromocionesContext)
   const descuentoRef = useRef(null)
   const selectRef = useRef(null)
   const codigoRef = useRef(null)
@@ -19,11 +19,14 @@ const ModalPromociones = ({ isEdit }) => {
     const descuento = descuentoRef.current.value
     const servicio = selectRef.current.value
     const codigoDescuento = codigoRef.current.value
-    crearPromocion({
-      descuento,
-      servicio,
-      codigoDescuento,
-    })
+    isEdit
+      ? editarPromocion(_id, { descuento, servicio, codigoDescuento })
+      : crearPromocion({
+          descuento,
+          servicio,
+          codigoDescuento,
+        })
+
     props.setOpenModal(undefined)
 
     console.log({ descuento, servicio, codigoDescuento })

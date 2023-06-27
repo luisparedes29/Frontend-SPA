@@ -10,7 +10,7 @@ import ModalPromociones from './ModalPromociones'
 const TABLE_HEAD = ['Servicio', 'Descuento', 'Codigo', 'Acciones']
 
 function TablaUsuarios() {
-  const { promociones } = useContext(PromocionesContext)
+  const { promociones, eliminarPromocion } = useContext(PromocionesContext)
   return (
     <div>
       <div className='flex justify-around'>
@@ -76,8 +76,11 @@ function TablaUsuarios() {
                     </td>
                     <td className={`${classes} bg-blue-gray-50/50`}>
                       <div className='flex gap-2 justify-center'>
-                        <ModalUsuarios isEdit={true} />
-                        <button className='w-[20px]'>
+                        <ModalPromociones isEdit={true} _id={_id} />
+                        <button
+                          className='w-[20px]'
+                          onClick={() => eliminarPromocion(_id)}
+                        >
                           <img src={eliminar}></img>
                         </button>
                       </div>
