@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import {
@@ -10,6 +10,7 @@ import {
   Option,
 } from '@material-tailwind/react'
 import { Link } from 'react-router-dom'
+import { ServiciosContext } from '../context/ServiciosContext'
 
 const Reserva = () => {
   const [nombre, setNombre] = useState('')
@@ -20,6 +21,7 @@ const Reserva = () => {
   const [codigoDescuento, setCodigoDescuento] = useState('')
   const [fecha, setFecha] = useState('')
   const [hora, setHora] = useState('')
+  const { servicios } = useContext(ServiciosContext)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -91,13 +93,18 @@ const Reserva = () => {
                 label='Servicios'
                 className='bg-white'
                 value={servicio}
-                onChange={() => setServicio(target.value)}
+                onChange={(value) => setServicio(value)}
               >
-                <Option>Material Tailwind HTML</Option>
-                <Option>Material Tailwind React</Option>
-                <Option>Material Tailwind Vue</Option>
-                <Option>Material Tailwind Angular</Option>
-                <Option>Material Tailwind Svelte</Option>
+                {servicios.map((servicio) => (
+                  <Option key={servicio._id} value={servicio.servicio}>
+                    {servicio.servicio}
+                  </Option>
+                ))}
+                {/* <Option value='Material'>Material Tailwind HTML</Option>
+                <Option value='Otro'>Material Tailwind React</Option>
+                <Option value='otro mas'>Material Tailwind Vue</Option>
+                <Option value='otroo'>Material Tailwind Angular</Option>
+                <Option value='otrico'>Material Tailwind Svelte</Option> */}
               </Select>
               <Input
                 size='lg'
