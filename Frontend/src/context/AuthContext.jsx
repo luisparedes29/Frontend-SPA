@@ -9,7 +9,7 @@ const AuthProvider = ({ children }) => {
   // Función para establecer el token en el contexto y en el almacenamiento local
   const login = (newToken) => {
     setToken(newToken)
-    localStorage.setItem('token', JSON.stringify(newToken))
+    localStorage.setItem('token', newToken)
   }
 
   // Función para eliminar el token del contexto y del almacenamiento local
@@ -22,7 +22,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const storedToken = localStorage.getItem('token')
     if (storedToken) {
-      setToken(JSON.parse(storedToken))
+      setToken(storedToken)
     }
   }, [])
 
