@@ -10,7 +10,7 @@ import { ServiciosContext } from '../context/ServiciosContext'
 const TABLE_HEAD = ['Servicio', 'Precio', 'Duracion', 'Descripcion', 'Acciones']
 
 export default function TablaServicios() {
-  const { servicios } = useContext(ServiciosContext)
+  const { servicios, eliminarServicio } = useContext(ServiciosContext)
   return (
     <div>
       <div className='flex justify-around'>
@@ -86,7 +86,10 @@ export default function TablaServicios() {
                     <td className={`${classes} bg-blue-gray-50/50`}>
                       <div className='flex gap-2 justify-center items-center'>
                         <ModalServicios isEdit={true} _id={_id} />
-                        <button className='w-[20px]'>
+                        <button
+                          className='w-[20px]'
+                          onClick={() => eliminarServicio(_id)}
+                        >
                           <img src={eliminar}></img>
                         </button>
                       </div>
