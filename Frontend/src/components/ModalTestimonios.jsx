@@ -18,6 +18,7 @@ const ModalTestimonios = () => {
     const testimonio = testimonioRef.current.value
     console.log({ sexo, nombre, testimonio })
     crearTestimonio({ sexo, nombre, testimonio })
+    props.setOpenModal(undefined)
   }
   return (
     <>
