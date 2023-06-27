@@ -9,36 +9,12 @@ import { TestimoniosContext } from '../context/TestimoniosContext'
 
 const TABLE_HEAD = ['Nombre', 'Sexo', 'Testimonoios', 'Acciones']
 
-const TABLE_ROWS = [
-  {
-    name: 'John Michael',
-    job: 'Manager',
-    date: '23/04/18',
-  },
-  {
-    name: 'Alexa Liras',
-    job: 'Developer',
-    date: '23/04/18',
-  },
-  {
-    name: 'Laurent Perrier',
-    job: 'Executive',
-    date: '19/09/17',
-  },
-  {
-    name: 'Michael Levi',
-    job: 'Developer',
-    date: '24/12/08',
-  },
-  {
-    name: 'Richard Gran',
-    job: 'Manager',
-    date: '04/10/21',
-  },
-]
-
 function TablaTestimonios() {
-  const { testimonios } = useContext(TestimoniosContext)
+  const { testimonios, eliminarTestimonio } = useContext(TestimoniosContext)
+  const handleDelete = () => {
+    eliminarTestimonio()
+  }
+
   return (
     <div>
       <div className='flex justify-around'>
@@ -103,8 +79,17 @@ function TablaTestimonios() {
                   </td>
                   <td className={`${classes} bg-blue-gray-50/50`}>
                     <div className='flex gap-2 justify-center'>
-                      <ModalTestimoniosAdmin isEdit={true} />
-                      <button className='w-[20px]'>
+                      <ModalTestimoniosAdmin
+                        isEdit={true}
+                        testimonio={testimonio}
+                        _id={_id}
+                        nombre={nombre}
+                        sexo={sexo}
+                      />
+                      <button
+                        className='w-[20px]'
+                        onClick={() => eliminarTestimonio(_id)}
+                      >
                         <img src={eliminar}></img>
                       </button>
                     </div>

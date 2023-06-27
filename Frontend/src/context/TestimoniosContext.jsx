@@ -87,7 +87,7 @@ export function TestimoniosProvider({ children }) {
           }
         })
         .then((data) => {
-          if (data.success) {
+          if (data.testimonio) {
             setTestimonios(
               // @ts-ignore
               testimonios.filter((testimonio) => testimonio._id !== id)

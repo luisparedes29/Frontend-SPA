@@ -1,10 +1,44 @@
 import { Button, Label, Modal, TextInput, Select } from 'flowbite-react'
-import React from 'react'
-import { useState } from 'react'
+import React, { useEffect } from 'react'
+import { useState, useContext, useRef } from 'react'
 import editar from '../assets/img/editar.svg'
-const ModalTestimoniosAdmin = ({ isEdit }) => {
+import { TestimoniosContext } from '../context/TestimoniosContext'
+const ModalTestimoniosAdmin = ({ isEdit, _id, nombre, sexo, testimonio }) => {
   const [openModal, setOpenModal] = useState()
   const props = { openModal, setOpenModal }
+  const { crearTestimonio, editarTestimonio, eliminarPromocion } =
+    useContext(TestimoniosContext)
+  const nombreRef = useRef(null)
+  const sexoRef = useRef(null)
+  const testimonioRef = useRef(null)
+
+  // useEffect(() => {
+  //   if (isEdit) {
+  //     // Actualizar el valor del useRef si la prop se cumple
+  //     nombreRef.current = nombre
+  //     sexoRef.current = sexo
+  //     testimonioRef.current = testimonio
+  //   }
+  // }, [isEdit, nombre, sexo, testimonio])
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const sexo = sexoRef.current.value
+    const nombre = nombreRef.current.value
+    const testimonio = testimonioRef.current.value
+    isEdit
+      ? editarTestimonio(_id, {
+          sexo,
+          nombre,
+          testimonio,
+        })
+      : crearTestimonio({
+          sexo,
+          nombre,
+          testimonio,
+        })
+    props.setOpenModal(undefined)
+  }
 
   // isEdit ? fetch('').then(() => {}) : fetch('').then(() => {})
 
@@ -27,7 +61,7 @@ const ModalTestimoniosAdmin = ({ isEdit }) => {
       >
         <Modal.Header className='bg-backPink' />
         <Modal.Body className='bg-backPink'>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className='space-y-6'>
               <h3 className='text-xl font-medium text-gray-900 dark:text-white'>
                 Ingresa datos del testimonio
@@ -36,13 +70,18 @@ const ModalTestimoniosAdmin = ({ isEdit }) => {
                 <div className='mb-2 block'>
                   <Label htmlFor='nombre' value='Nombre' />
                 </div>
-                <TextInput type='text' placeholder='Nombre' required />
+                <TextInput
+                  type='text'
+                  placeholder='Nombre'
+                  ref={nombreRef}
+                  required
+                />
               </div>
               <div className='max-w-md' id='select'>
                 <div className='mb-2 block'>
                   <Label htmlFor='sexo' value='Selecciona sexo' />
                 </div>
-                <Select required>
+                <Select ref={sexoRef} required>
                   <option>Hombre</option>
                   <option>Mujer</option>
                 </Select>
@@ -52,6 +91,7 @@ const ModalTestimoniosAdmin = ({ isEdit }) => {
                   <Label htmlFor='testimonio' value='Testimonio' />
                 </div>
                 <TextInput
+                  ref={testimonioRef}
                   type='text'
                   placeholder='Ingresa testimonio'
                   required
