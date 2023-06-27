@@ -8,8 +8,9 @@ const AuthProvider = ({ children }) => {
 
   // Función para establecer el token en el contexto y en el almacenamiento local
   const login = (newToken) => {
-    setToken(newToken)
+    console.log('Setting token:', newToken)
     localStorage.setItem('token', newToken)
+    setToken(newToken)
   }
 
   // Función para eliminar el token del contexto y del almacenamiento local
@@ -18,11 +19,21 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem('token')
   }
 
+  async function usinglocal() {}
+
   // Verificar si hay un token guardado en el almacenamiento local al cargar la aplicación
   useEffect(() => {
     const storedToken = localStorage.getItem('token')
     if (storedToken) {
-      setToken(storedToken)
+      const decodedToken = jwt_decode(storedToken)
+      const currentTime = Date.now() / 1000 // Obtener la fecha actual en segundos
+
+      // Verificar si el token está vencido
+      if (decodedToken.exp < currentTime) {
+        logout() // Si el token está vencido, hacer logout
+      } else {
+        setToken(storedToken) // Si el token es válido, establecerlo en el estado
+      }
     }
   }, [])
 

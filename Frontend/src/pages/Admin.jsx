@@ -11,6 +11,7 @@ import { AuthContext } from '../context/AuthContext'
 
 const Admin = () => {
   const { token } = useContext(AuthContext)
+  console.log(token)
   const navigate = useNavigate()
 
   useEffect(() => {

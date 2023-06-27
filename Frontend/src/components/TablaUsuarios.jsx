@@ -38,43 +38,44 @@ function TablaUsuarios() {
             </tr>
           </thead>
           <tbody>
-            {usuarios.map(({ _id, nombre, usuario }, index) => {
-              const isLast = index === usuarios.length - 1
-              const classes = isLast
-                ? 'p-2'
-                : 'p-2 border-b border-blue-gray-50'
+            {usuarios &&
+              usuarios.map(({ _id, nombre, usuario }, index) => {
+                const isLast = index === usuarios.length - 1
+                const classes = isLast
+                  ? 'p-2'
+                  : 'p-2 border-b border-blue-gray-50'
 
-              return (
-                <tr key={_id}>
-                  <td className={classes}>
-                    <Typography
-                      variant='small'
-                      color='blue-gray'
-                      className='font-normal'
-                    >
-                      {nombre}
-                    </Typography>
-                  </td>
-                  <td className={`${classes} bg-blue-gray-50/50`}>
-                    <Typography
-                      variant='small'
-                      color='blue-gray'
-                      className='font-normal'
-                    >
-                      {usuario}
-                    </Typography>
-                  </td>
-                  <td className={`${classes} bg-blue-gray-50/50`}>
-                    <div className='flex gap-2 justify-center'>
-                      <ModalUsuarios isEdit={true} />
-                      <button className='w-[20px]'>
-                        <img src={eliminar}></img>
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              )
-            })}
+                return (
+                  <tr key={_id}>
+                    <td className={classes}>
+                      <Typography
+                        variant='small'
+                        color='blue-gray'
+                        className='font-normal'
+                      >
+                        {nombre}
+                      </Typography>
+                    </td>
+                    <td className={`${classes} bg-blue-gray-50/50`}>
+                      <Typography
+                        variant='small'
+                        color='blue-gray'
+                        className='font-normal'
+                      >
+                        {usuario}
+                      </Typography>
+                    </td>
+                    <td className={`${classes} bg-blue-gray-50/50`}>
+                      <div className='flex gap-2 justify-center'>
+                        <ModalUsuarios isEdit={true} />
+                        <button className='w-[20px]'>
+                          <img src={eliminar}></img>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                )
+              })}
           </tbody>
         </table>
       </Card>

@@ -6,7 +6,7 @@ export const UsuariosContext = createContext()
 export function UsuariosProvider({ children }) {
   const { token } = useContext(AuthContext)
   const [usuarios, setUsuarios] = useState([])
-  console.log(token)
+  // console.log(token)
 
   useEffect(() => {
     fetch('http://localhost:3000/usuarios', {

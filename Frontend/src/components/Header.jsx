@@ -1,10 +1,12 @@
 import { FaBars, FaTimes } from 'react-icons/fa'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import logo from '../assets/img/logo.webp'
 import { NavLink } from 'react-router-dom'
+import { AuthContext } from '../context/AuthContext'
 
 const Header = ({ condicion = false }) => {
   const [clase, setClase] = useState('-left-full')
+  const { token, logout } = useContext(AuthContext)
   function cambio() {
     if (clase == '-left-full') {
       setClase('left-0')
@@ -67,14 +69,35 @@ const Header = ({ condicion = false }) => {
                   Reserva
                 </li>
               </NavLink>
-              <NavLink to='/Login'>
-                <li
-                  onClick={cambio}
-                  className='p-4  hover:border-letrasHead hover:border-2 hover:bg-marronOscuro hover:bg-opacity-30 hover:rounded-lg sm:text-lg'
-                >
-                  Login
-                </li>
-              </NavLink>
+              {token && (
+                <NavLink to='/Admin'>
+                  <li
+                    onClick={cambio}
+                    className='p-4  hover:border-letrasHead hover:border-2 hover:bg-marronOscuro hover:bg-opacity-30 hover:rounded-lg sm:text-lg'
+                  >
+                    ADMIN
+                  </li>
+                </NavLink>
+              )}
+              {token ? (
+                <div onClick={logout}>
+                  <li
+                    onClick={cambio}
+                    className='p-4  hover:border-letrasHead hover:border-2 hover:bg-marronOscuro hover:bg-opacity-30 hover:rounded-lg sm:text-lg'
+                  >
+                    logout
+                  </li>
+                </div>
+              ) : (
+                <NavLink to='/Login'>
+                  <li
+                    onClick={cambio}
+                    className='p-4  hover:border-letrasHead hover:border-2 hover:bg-marronOscuro hover:bg-opacity-30 hover:rounded-lg sm:text-lg'
+                  >
+                    Login
+                  </li>
+                </NavLink>
+              )}
             </ul>
             <FaBars
               className='text-4xl text-white cursor-pointer sm:hidden'
