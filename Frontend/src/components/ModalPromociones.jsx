@@ -1,12 +1,20 @@
 import { Button, Label, Modal, TextInput, Select } from 'flowbite-react'
 import React from 'react'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import editar from '../assets/img/editar.svg'
 const ModalPromociones = ({ isEdit }) => {
   const [openModal, setOpenModal] = useState()
+  const descuentoRef = useRef(null)
+  const selectRef = useRef(null)
   const props = { openModal, setOpenModal }
 
   // isEdit ? fetch('').then(() => {}) : fetch('').then(() => {})
+  const handleButtonSubmit = (e) => {
+    e.preventDefault()
+    const value = descuentoRef.current.value
+    const value2 = selectRef.current.value
+    console.log(value, value2)
+  }
 
   return (
     <>
@@ -27,7 +35,7 @@ const ModalPromociones = ({ isEdit }) => {
       >
         <Modal.Header className='bg-backPink' />
         <Modal.Body className='bg-backPink'>
-          <form>
+          <form onSubmit={handleButtonSubmit}>
             <div className='space-y-6'>
               <h3 className='text-xl font-medium text-gray-900 dark:text-white'>
                 Ingresa datos de la Promocione
@@ -39,7 +47,7 @@ const ModalPromociones = ({ isEdit }) => {
                     value='Selecciona Servicio'
                   />
                 </div>
-                <Select required>
+                <Select ref={selectRef}>
                   <option>Hombre</option>
                   <option>Mujer</option>
                 </Select>
@@ -51,6 +59,7 @@ const ModalPromociones = ({ isEdit }) => {
                 <TextInput
                   type='number'
                   placeholder='Ingresa el Descuento'
+                  ref={descuentoRef}
                   min='1'
                   required
                 />
@@ -62,11 +71,7 @@ const ModalPromociones = ({ isEdit }) => {
                     value='Codigo de Descuento'
                   />
                 </div>
-                <TextInput
-                  type='text'
-                  placeholder='Ingresa el Codigo'
-                  required
-                />
+                <TextInput type='text' placeholder='Ingresa el Codigo' />
               </div>
               <div className='w-full flex justify-center'>
                 <Button type='submit' className='bg-backPinkOsucuro'>

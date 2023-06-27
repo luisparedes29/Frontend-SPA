@@ -5,6 +5,7 @@ import React, { useContext } from 'react'
 import eliminar from '../assets/img/eliminar.svg'
 import ModalUsuarios from './ModalUsuarios'
 import { PromocionesContext } from '../context/PromocionesContext'
+import ModalPromociones from './ModalPromociones'
 
 const TABLE_HEAD = ['Servicio', 'Descuento', 'Codigo', 'Acciones']
 
@@ -14,7 +15,7 @@ function TablaUsuarios() {
     <div>
       <div className='flex justify-around'>
         <h3 className='text-center mb-4 text-xl'>Promociones</h3>
-        <ModalUsuarios isEdit={false} />
+        <ModalPromociones isEdit={false} />
       </div>
       <Card className='overflow-scroll h-full w-[350px]'>
         <table className='w-[350px] min-w-max table-auto text-left'>
