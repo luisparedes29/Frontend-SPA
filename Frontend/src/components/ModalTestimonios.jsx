@@ -1,9 +1,24 @@
 import { Button, Label, Modal, TextInput, Select } from 'flowbite-react'
 import React from 'react'
-import { useState } from 'react'
+import { useState, useRef, useContext } from 'react'
+import { TestimoniosContext } from '../context/TestimoniosContext'
 const ModalTestimonios = () => {
   const [openModal, setOpenModal] = useState()
+  const sexoRef = useRef(null)
+  const nombreRef = useRef(null)
+  const testimonioRef = useRef(null)
+  const { crearTestimonio } = useContext(TestimoniosContext)
+
   const props = { openModal, setOpenModal }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const sexo = sexoRef.current.value
+    const nombre = nombreRef.current.value
+    const testimonio = testimonioRef.current.value
+    console.log({ sexo, nombre, testimonio })
+    crearTestimonio({ sexo, nombre, testimonio })
+  }
   return (
     <>
       <Button
@@ -21,7 +36,7 @@ const ModalTestimonios = () => {
       >
         <Modal.Header className='bg-backPink' />
         <Modal.Body className='bg-backPink'>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className='space-y-6'>
               <h3 className='text-xl font-medium text-gray-900 dark:text-white'>
                 Ingresa tus datos y crea el testimonio
@@ -31,6 +46,7 @@ const ModalTestimonios = () => {
                   <Label htmlFor='nombre' value='Tu Nombre' />
                 </div>
                 <TextInput
+                  ref={nombreRef}
                   type='text'
                   placeholder='Ingresa tu nombre'
                   required
@@ -40,7 +56,7 @@ const ModalTestimonios = () => {
                 <div className='mb-2 block'>
                   <Label htmlFor='sexo' value='Selecciona tu sexo' />
                 </div>
-                <Select required>
+                <Select ref={sexoRef} required>
                   <option>Hombre</option>
                   <option>Mujer</option>
                 </Select>
@@ -50,6 +66,7 @@ const ModalTestimonios = () => {
                   <Label htmlFor='testimonio' value='Tu Testimonio' />
                 </div>
                 <TextInput
+                  ref={testimonioRef}
                   type='text'
                   placeholder='Ingresa tu testimonio'
                   required
