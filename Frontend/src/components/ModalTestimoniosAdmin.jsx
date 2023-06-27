@@ -6,7 +6,7 @@ const ModalTestimoniosAdmin = ({ isEdit }) => {
   const [openModal, setOpenModal] = useState()
   const props = { openModal, setOpenModal }
 
-  isEdit ? fetch('').then(() => {}) : fetch('').then(() => {})
+  // isEdit ? fetch('').then(() => {}) : fetch('').then(() => {})
 
   return (
     <>
@@ -36,18 +36,13 @@ const ModalTestimoniosAdmin = ({ isEdit }) => {
                 <div className='mb-2 block'>
                   <Label htmlFor='nombre' value='Nombre' />
                 </div>
-                <TextInput
-                  id='nombre'
-                  type='text'
-                  placeholder='Nombre'
-                  required
-                />
+                <TextInput type='text' placeholder='Nombre' required />
               </div>
               <div className='max-w-md' id='select'>
                 <div className='mb-2 block'>
                   <Label htmlFor='sexo' value='Selecciona sexo' />
                 </div>
-                <Select id='sexo' required>
+                <Select required>
                   <option>Hombre</option>
                   <option>Mujer</option>
                 </Select>
@@ -57,7 +52,6 @@ const ModalTestimoniosAdmin = ({ isEdit }) => {
                   <Label htmlFor='testimonio' value='Testimonio' />
                 </div>
                 <TextInput
-                  id='testimonio'
                   type='text'
                   placeholder='Ingresa testimonio'
                   required

@@ -1,46 +1,19 @@
 'use client'
 
 import { Card, Typography } from '@material-tailwind/react'
-import React from 'react'
-import editar from '../assets/img/editar.svg'
+import React, { useContext } from 'react'
 import eliminar from '../assets/img/eliminar.svg'
 import ModalUsuarios from './ModalUsuarios'
+import { PromocionesContext } from '../context/PromocionesContext'
 
-const TABLE_HEAD = ['Servicio', 'Precio', 'Duracion', 'Descripcion', 'Acciones']
-
-const TABLE_ROWS = [
-  {
-    name: 'John Michael',
-    job: 'Manager',
-    date: '23/04/18',
-  },
-  {
-    name: 'Alexa Liras',
-    job: 'Developer',
-    date: '23/04/18',
-  },
-  {
-    name: 'Laurent Perrier',
-    job: 'Executive',
-    date: '19/09/17',
-  },
-  {
-    name: 'Michael Levi',
-    job: 'Developer',
-    date: '24/12/08',
-  },
-  {
-    name: 'Richard Gran',
-    job: 'Manager',
-    date: '04/10/21',
-  },
-]
+const TABLE_HEAD = ['Servicio', 'Descuento', 'Codigo', 'Acciones']
 
 function TablaUsuarios() {
+  const { promociones } = useContext(PromocionesContext)
   return (
     <div>
       <div className='flex justify-around'>
-        <h3 className='text-center mb-4 text-xl'>Usuarios</h3>
+        <h3 className='text-center mb-4 text-xl'>Promociones</h3>
         <ModalUsuarios isEdit={false} />
       </div>
       <Card className='overflow-scroll h-full w-[350px]'>
@@ -64,63 +37,54 @@ function TablaUsuarios() {
             </tr>
           </thead>
           <tbody>
-            {TABLE_ROWS.map(({ name, job, date }, index) => {
-              const isLast = index === TABLE_ROWS.length - 1
-              const classes = isLast
-                ? 'p-2'
-                : 'p-2 border-b border-blue-gray-50'
+            {promociones.map(
+              ({ servicio, descuento, codigoDescuento, _id }, index) => {
+                const isLast = index === promociones.length - 1
+                const classes = isLast
+                  ? 'p-2'
+                  : 'p-2 border-b border-blue-gray-50'
 
-              return (
-                <tr key={name}>
-                  <td className={classes}>
-                    <Typography
-                      variant='small'
-                      color='blue-gray'
-                      className='font-normal'
-                    >
-                      {name}
-                    </Typography>
-                  </td>
-                  <td className={`${classes} bg-blue-gray-50/50`}>
-                    <Typography
-                      variant='small'
-                      color='blue-gray'
-                      className='font-normal'
-                    >
-                      {job}
-                    </Typography>
-                  </td>
-                  <td className={classes}>
-                    <Typography
-                      variant='small'
-                      color='blue-gray'
-                      className='font-normal'
-                    >
-                      {date}
-                    </Typography>
-                  </td>
-                  <td className={`${classes} bg-blue-gray-50/50`}>
-                    <Typography
-                      as='a'
-                      href='#'
-                      variant='small'
-                      color='blue-gray'
-                      className='font-normal'
-                    >
-                      Vacio
-                    </Typography>
-                  </td>
-                  <td className={`${classes} bg-blue-gray-50/50`}>
-                    <div className='flex gap-2 justify-center'>
-                      <ModalUsuarios isEdit={true} />
-                      <button className='w-[20px]'>
-                        <img src={eliminar}></img>
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              )
-            })}
+                return (
+                  <tr key={_id}>
+                    <td className={classes}>
+                      <Typography
+                        variant='small'
+                        color='blue-gray'
+                        className='font-normal'
+                      >
+                        {servicio}
+                      </Typography>
+                    </td>
+                    <td className={`${classes} bg-blue-gray-50/50`}>
+                      <Typography
+                        variant='small'
+                        color='blue-gray'
+                        className='font-normal'
+                      >
+                        {descuento}
+                      </Typography>
+                    </td>
+                    <td className={classes}>
+                      <Typography
+                        variant='small'
+                        color='blue-gray'
+                        className='font-normal'
+                      >
+                        {codigoDescuento}
+                      </Typography>
+                    </td>
+                    <td className={`${classes} bg-blue-gray-50/50`}>
+                      <div className='flex gap-2 justify-center'>
+                        <ModalUsuarios isEdit={true} />
+                        <button className='w-[20px]'>
+                          <img src={eliminar}></img>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                )
+              }
+            )}
           </tbody>
         </table>
       </Card>

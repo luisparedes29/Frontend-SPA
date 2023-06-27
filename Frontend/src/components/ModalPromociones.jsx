@@ -6,7 +6,7 @@ const ModalPromociones = ({ isEdit }) => {
   const [openModal, setOpenModal] = useState()
   const props = { openModal, setOpenModal }
 
-  isEdit ? fetch('').then(() => {}) : fetch('').then(() => {})
+  // isEdit ? fetch('').then(() => {}) : fetch('').then(() => {})
 
   return (
     <>
@@ -34,19 +34,21 @@ const ModalPromociones = ({ isEdit }) => {
               </h3>
               <div className='max-w-md' id='select'>
                 <div className='mb-2 block'>
-                  <Label htmlFor='Servicio' value='Selecciona Servicio' />
+                  <Label
+                    htmlFor='ServicioPromociones'
+                    value='Selecciona Servicio'
+                  />
                 </div>
-                <Select id='Servicio' required>
+                <Select required>
                   <option>Hombre</option>
                   <option>Mujer</option>
                 </Select>
               </div>
               <div>
                 <div className='mb-2 block'>
-                  <Label htmlFor='Descuento' value='Descuento' />
+                  <Label htmlFor='DescuentoPromociones' value='Descuento' />
                 </div>
                 <TextInput
-                  id='Descuento'
                   type='number'
                   placeholder='Ingresa el Descuento'
                   min='1'
@@ -55,10 +57,12 @@ const ModalPromociones = ({ isEdit }) => {
               </div>
               <div>
                 <div className='mb-2 block'>
-                  <Label htmlFor='CODIGO' value='Codigo de Descuento' />
+                  <Label
+                    htmlFor='CodigoPromociones'
+                    value='Codigo de Descuento'
+                  />
                 </div>
                 <TextInput
-                  id='CODIGO'
                   type='text'
                   placeholder='Ingresa el Codigo'
                   required

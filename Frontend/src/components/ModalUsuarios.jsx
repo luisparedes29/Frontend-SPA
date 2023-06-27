@@ -17,7 +17,7 @@ export default function ModalUsuarios({ isEdit }) {
     setOpenModal(false)
   }
 
-  isEdit ? fetch('').then(() => {}) : fetch('').then(() => {})
+  //isEdit ? fetch('').then(() => {}) : fetch('').then(() => {})
 
   return (
     <>
@@ -48,7 +48,6 @@ export default function ModalUsuarios({ isEdit }) {
                   <Label htmlFor='nombreUsuario' value='Nombre' />
                 </div>
                 <TextInput
-                  id='nombreUsuario'
                   type='text'
                   placeholder='Ingresa el nombre de la persona'
                   required
@@ -61,7 +60,6 @@ export default function ModalUsuarios({ isEdit }) {
                   <Label htmlFor='usuario' value='Usuario' />
                 </div>
                 <TextInput
-                  id='usuario'
                   type='text'
                   placeholder='Ingresa el nombre de usuario'
                   required
@@ -74,7 +72,6 @@ export default function ModalUsuarios({ isEdit }) {
                   <Label htmlFor='contraseña' value='Contraseña' />
                 </div>
                 <TextInput
-                  id='contraseña'
                   type='password'
                   placeholder='Ingresa la contraseña'
                   required

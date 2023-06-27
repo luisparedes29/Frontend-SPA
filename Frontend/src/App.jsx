@@ -12,31 +12,37 @@ import { PromocionesProvider } from './context/PromocionesContext'
 import { TestimoniosProvider } from './context/TestimoniosContext'
 import { ReservacionesProvider } from './context/ReservacionesContext'
 import { ServiciosProvider } from './context/ServiciosContext'
+import { UsuariosProvider } from './context/UsuariosContext'
+import { AuthProvider } from './context/AuthContext'
 
 function App() {
   return (
     <ContextFunctions>
-      <PromocionesProvider>
-        <TestimoniosProvider>
-          <ReservacionesProvider>
-            <ServiciosProvider>
-              <BrowserRouter>
-                <Routes>
-                  <Route path='/' element={<Landing />}></Route>
-                  <Route path='/Servicios' element={<Servicios />}></Route>
-                  <Route path='/Reserva' element={<Reserva />}></Route>
-                  <Route
-                    path='/Promociones'
-                    element={<Promociones />}
-                  ></Route>{' '}
-                  <Route path='/Login' element={<Login />}></Route>
-                  <Route path='/Admin' element={<Admin />}></Route>
-                </Routes>
-              </BrowserRouter>
-            </ServiciosProvider>
-          </ReservacionesProvider>
-        </TestimoniosProvider>
-      </PromocionesProvider>
+      <AuthProvider>
+        <PromocionesProvider>
+          <TestimoniosProvider>
+            <ReservacionesProvider>
+              <ServiciosProvider>
+                <UsuariosProvider>
+                  <BrowserRouter>
+                    <Routes>
+                      <Route path='/' element={<Landing />}></Route>
+                      <Route path='/Servicios' element={<Servicios />}></Route>
+                      <Route path='/Reserva' element={<Reserva />}></Route>
+                      <Route
+                        path='/Promociones'
+                        element={<Promociones />}
+                      ></Route>
+                      <Route path='/Login' element={<Login />}></Route>
+                      <Route path='/Admin' element={<Admin />}></Route>
+                    </Routes>
+                  </BrowserRouter>
+                </UsuariosProvider>
+              </ServiciosProvider>
+            </ReservacionesProvider>
+          </TestimoniosProvider>
+        </PromocionesProvider>
+      </AuthProvider>
     </ContextFunctions>
   )
 }

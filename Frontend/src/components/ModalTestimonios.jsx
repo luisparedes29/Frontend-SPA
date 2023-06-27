@@ -31,7 +31,6 @@ const ModalTestimonios = () => {
                   <Label htmlFor='nombre' value='Tu Nombre' />
                 </div>
                 <TextInput
-                  id='nombreTestimonio'
                   type='text'
                   placeholder='Ingresa tu nombre'
                   required
@@ -41,7 +40,7 @@ const ModalTestimonios = () => {
                 <div className='mb-2 block'>
                   <Label htmlFor='sexo' value='Selecciona tu sexo' />
                 </div>
-                <Select id='sexo' required>
+                <Select required>
                   <option>Hombre</option>
                   <option>Mujer</option>
                 </Select>
@@ -51,7 +50,6 @@ const ModalTestimonios = () => {
                   <Label htmlFor='testimonio' value='Tu Testimonio' />
                 </div>
                 <TextInput
-                  id='testimonio'
                   type='text'
                   placeholder='Ingresa tu testimonio'
                   required

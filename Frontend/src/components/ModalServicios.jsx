@@ -6,7 +6,7 @@ export default function ModalServicios({ isEdit }) {
   const [openModal, setOpenModal] = useState()
   const props = { openModal, setOpenModal }
 
-  isEdit ? fetch('').then(() => {}) : fetch('').then(() => {})
+  //isEdit ? fetch('').then(() => {}) : fetch('').then(() => {})
 
   return (
     <>
@@ -37,7 +37,6 @@ export default function ModalServicios({ isEdit }) {
                   <Label htmlFor='servicio' value='Servicio' />
                 </div>
                 <TextInput
-                  id='servicio'
                   type='text'
                   placeholder='Ingresa el nombre del servicio'
                   required
@@ -48,7 +47,6 @@ export default function ModalServicios({ isEdit }) {
                   <Label htmlFor='Precio' value='Precio' />
                 </div>
                 <TextInput
-                  id='Precio'
                   type='number'
                   placeholder='Ingresa el Precio'
                   min='1'
@@ -60,7 +58,6 @@ export default function ModalServicios({ isEdit }) {
                   <Label htmlFor='Duracion' value='Duracion' />
                 </div>
                 <TextInput
-                  id='Duracion'
                   type='time'
                   placeholder='Ingresa el tiempo'
                   required
@@ -72,7 +69,6 @@ export default function ModalServicios({ isEdit }) {
                   <Label htmlFor='descripcion' value='Descripcion' />
                 </div>
                 <TextInput
-                  id='descripcion'
                   type='text'
                   placeholder='Ingresa la descripcion'
                   required

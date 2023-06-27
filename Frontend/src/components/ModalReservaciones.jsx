@@ -6,7 +6,7 @@ export default function ModalReservaciones({ isEdit }) {
   const [openModal, setOpenModal] = useState()
   const props = { openModal, setOpenModal }
 
-  isEdit ? fetch('').then(() => {}) : fetch('').then(() => {})
+  //isEdit ? fetch('').then(() => {}) : fetch('').then(() => {})
 
   return (
     <>
@@ -37,7 +37,6 @@ export default function ModalReservaciones({ isEdit }) {
                   <Label htmlFor='nombre' value='Nombre' />
                 </div>
                 <TextInput
-                  id='nombreReservacion'
                   type='text'
                   placeholder='Ingresa el nombre de la persona'
                   required
@@ -48,7 +47,6 @@ export default function ModalReservaciones({ isEdit }) {
                   <Label htmlFor='CedulaReservacion' value='Cedula' />
                 </div>
                 <TextInput
-                  id='CedulaReservacion'
                   type='text'
                   placeholder='Ingresa la cedula de identidad'
                   required
@@ -59,7 +57,6 @@ export default function ModalReservaciones({ isEdit }) {
                   <Label htmlFor='correo' value='Correo' />
                 </div>
                 <TextInput
-                  id='Cedula'
                   type='email'
                   placeholder='Ingresa tu correo ejemplo@gmail.com'
                   required
@@ -69,7 +66,7 @@ export default function ModalReservaciones({ isEdit }) {
                 <div className='mb-2 block'>
                   <Label htmlFor='servicio' value='Selecciona el servicio' />
                 </div>
-                <Select id='servicioReservacion' required>
+                <Select required>
                   <option>United States</option>
                   <option>Canada</option>
                   <option>France</option>
@@ -81,7 +78,6 @@ export default function ModalReservaciones({ isEdit }) {
                   <Label htmlFor='cantidad' value='Cantidad de personas' />
                 </div>
                 <TextInput
-                  id='cantidad'
                   type='number'
                   placeholder='Ingresa la cantidad de personas'
                   min='1'
@@ -93,7 +89,6 @@ export default function ModalReservaciones({ isEdit }) {
                   <Label htmlFor='' value='Fecha' />
                 </div>
                 <TextInput
-                  id='Fecha'
                   type='date'
                   placeholder='Ingresa la Fecha'
                   required
@@ -104,19 +99,13 @@ export default function ModalReservaciones({ isEdit }) {
                 <div className='mb-2 block'>
                   <Label htmlFor='Hora' value='Hora' />
                 </div>
-                <TextInput
-                  id='Hora'
-                  type='date'
-                  placeholder='Ingresa la Hora'
-                  required
-                />
+                <TextInput type='date' placeholder='Ingresa la Hora' required />
               </div>
               <div>
                 <div className='mb-2 block'>
                   <Label htmlFor='codigo' value='Codigo de Descuento' />
                 </div>
                 <TextInput
-                  id='codigo'
                   placeholder='Ingresa el codigo de Descuento'
                   required
                 />

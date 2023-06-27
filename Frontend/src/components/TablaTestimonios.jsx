@@ -1,10 +1,11 @@
 'use client'
 
 import { Card, Typography } from '@material-tailwind/react'
-import React from 'react'
+import React, { useContext } from 'react'
 import editar from '../assets/img/editar.svg'
 import eliminar from '../assets/img/eliminar.svg'
 import ModalTestimoniosAdmin from './ModalTestimoniosAdmin'
+import { TestimoniosContext } from '../context/TestimoniosContext'
 
 const TABLE_HEAD = ['Nombre', 'Sexo', 'Testimonoios', 'Acciones']
 
@@ -37,6 +38,7 @@ const TABLE_ROWS = [
 ]
 
 function TablaTestimonios() {
+  const { testimonios } = useContext(TestimoniosContext)
   return (
     <div>
       <div className='flex justify-around'>
@@ -64,21 +66,21 @@ function TablaTestimonios() {
             </tr>
           </thead>
           <tbody>
-            {TABLE_ROWS.map(({ name, job, date }, index) => {
-              const isLast = index === TABLE_ROWS.length - 1
+            {testimonios.map(({ _id, nombre, sexo, testimonio }, index) => {
+              const isLast = index === testimonios.length - 1
               const classes = isLast
                 ? 'p-2'
                 : 'p-2 border-b border-blue-gray-50'
 
               return (
-                <tr key={name}>
+                <tr key={_id}>
                   <td className={classes}>
                     <Typography
                       variant='small'
                       color='blue-gray'
                       className='font-normal'
                     >
-                      {name}
+                      {nombre}
                     </Typography>
                   </td>
                   <td className={`${classes} bg-blue-gray-50/50`}>
@@ -87,7 +89,7 @@ function TablaTestimonios() {
                       color='blue-gray'
                       className='font-normal'
                     >
-                      {job}
+                      {sexo}
                     </Typography>
                   </td>
                   <td className={classes}>
@@ -96,7 +98,7 @@ function TablaTestimonios() {
                       color='blue-gray'
                       className='font-normal'
                     >
-                      {date}
+                      {testimonio}
                     </Typography>
                   </td>
                   <td className={`${classes} bg-blue-gray-50/50`}>

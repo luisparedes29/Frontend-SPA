@@ -1,42 +1,16 @@
 'use client'
 
 import { Card, Typography } from '@material-tailwind/react'
-import React from 'react'
+import React, { useContext } from 'react'
 import editar from '../assets/img/editar.svg'
 import eliminar from '../assets/img/eliminar.svg'
 import ModalServicios from './ModalServicios'
+import { ServiciosContext } from '../context/ServiciosContext'
 
 const TABLE_HEAD = ['Servicio', 'Precio', 'Duracion', 'Descripcion', 'Acciones']
 
-const TABLE_ROWS = [
-  {
-    name: 'John Michael',
-    job: 'Manager',
-    date: '23/04/18',
-  },
-  {
-    name: 'Alexa Liras',
-    job: 'Developer',
-    date: '23/04/18',
-  },
-  {
-    name: 'Laurent Perrier',
-    job: 'Executive',
-    date: '19/09/17',
-  },
-  {
-    name: 'Michael Levi',
-    job: 'Developer',
-    date: '24/12/08',
-  },
-  {
-    name: 'Richard Gran',
-    job: 'Manager',
-    date: '04/10/21',
-  },
-]
-
 export default function TablaServicios() {
+  const { servicios } = useContext(ServiciosContext)
   return (
     <div>
       <div className='flex justify-around'>
@@ -64,63 +38,63 @@ export default function TablaServicios() {
             </tr>
           </thead>
           <tbody>
-            {TABLE_ROWS.map(({ name, job, date, descripcion }, index) => {
-              const isLast = index === TABLE_ROWS.length - 1
-              const classes = isLast
-                ? 'p-2'
-                : 'p-2 border-b border-blue-gray-50'
+            {servicios.map(
+              ({ _id, servicio, precio, duracion, descripcion }, index) => {
+                const isLast = index === servicios.length - 1
+                const classes = isLast
+                  ? 'p-2'
+                  : 'p-2 border-b border-blue-gray-50'
 
-              return (
-                <tr key={name}>
-                  <td className={classes}>
-                    <Typography
-                      variant='small'
-                      color='blue-gray'
-                      className='font-normal'
-                    >
-                      {name}
-                    </Typography>
-                  </td>
-                  <td className={`${classes} bg-blue-gray-50/50`}>
-                    <Typography
-                      variant='small'
-                      color='blue-gray'
-                      className='font-normal'
-                    >
-                      {job}
-                    </Typography>
-                  </td>
-                  <td className={classes}>
-                    <Typography
-                      variant='small'
-                      color='blue-gray'
-                      className='font-normal'
-                    >
-                      {date}
-                    </Typography>
-                  </td>
-                  <td className={`${classes} bg-blue-gray-50/50`}>
-                    <Typography
-                      as='a'
-                      href='#'
-                      variant='small'
-                      color='blue-gray'
-                      className='font-normal'
-                    >
-                      Vacio
-                    </Typography>
-                  </td>
-                  <td className={`${classes} bg-blue-gray-50/50`}>
-                    <div className='flex gap-2 justify-center items-center'>
-                      <ModalServicios isEdit={true} />
-                      <button className='w-[20px]'>
-                        <img src={eliminar}></img>
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              )
-            })}
+                return (
+                  <tr key={_id}>
+                    <td className={classes}>
+                      <Typography
+                        variant='small'
+                        color='blue-gray'
+                        className='font-normal'
+                      >
+                        {servicio}
+                      </Typography>
+                    </td>
+                    <td className={`${classes} bg-blue-gray-50/50`}>
+                      <Typography
+                        variant='small'
+                        color='blue-gray'
+                        className='font-normal'
+                      >
+                        {precio}
+                      </Typography>
+                    </td>
+                    <td className={classes}>
+                      <Typography
+                        variant='small'
+                        color='blue-gray'
+                        className='font-normal'
+                      >
+                        {duracion}
+                      </Typography>
+                    </td>
+                    <td className={`${classes} bg-blue-gray-50/50`}>
+                      <Typography
+                        variant='small'
+                        color='blue-gray'
+                        className='font-normal'
+                      >
+                        {descripcion}
+                      </Typography>
+                    </td>
+                    <td className={`${classes} bg-blue-gray-50/50`}>
+                      <div className='flex gap-2 justify-center items-center'>
+                        <ModalServicios isEdit={true} />
+                        <button className='w-[20px]'>
+                          <img src={eliminar}></img>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                )
+              }
+            )}
           </tbody>
         </table>
       </Card>
