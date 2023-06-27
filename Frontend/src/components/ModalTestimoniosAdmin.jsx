@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { useState, useContext, useRef } from 'react'
 import editar from '../assets/img/editar.svg'
 import { TestimoniosContext } from '../context/TestimoniosContext'
-const ModalTestimoniosAdmin = ({ isEdit, _id, nombre, sexo, testimonio }) => {
+const ModalTestimoniosAdmin = ({ isEdit, _id = null }) => {
   const [openModal, setOpenModal] = useState()
   const props = { openModal, setOpenModal }
   const { crearTestimonio, editarTestimonio, eliminarPromocion } =
@@ -11,15 +11,6 @@ const ModalTestimoniosAdmin = ({ isEdit, _id, nombre, sexo, testimonio }) => {
   const nombreRef = useRef(null)
   const sexoRef = useRef(null)
   const testimonioRef = useRef(null)
-
-  // useEffect(() => {
-  //   if (isEdit) {
-  //     // Actualizar el valor del useRef si la prop se cumple
-  //     nombreRef.current = nombre
-  //     sexoRef.current = sexo
-  //     testimonioRef.current = testimonio
-  //   }
-  // }, [isEdit, nombre, sexo, testimonio])
 
   const handleSubmit = (e) => {
     e.preventDefault()

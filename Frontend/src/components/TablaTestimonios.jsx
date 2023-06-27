@@ -11,9 +11,6 @@ const TABLE_HEAD = ['Nombre', 'Sexo', 'Testimonoios', 'Acciones']
 
 function TablaTestimonios() {
   const { testimonios, eliminarTestimonio } = useContext(TestimoniosContext)
-  const handleDelete = () => {
-    eliminarTestimonio()
-  }
 
   return (
     <div>
