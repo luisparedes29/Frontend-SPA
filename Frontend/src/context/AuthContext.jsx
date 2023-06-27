@@ -4,7 +4,10 @@ import jwt_decode from 'jwt-decode'
 const AuthContext = createContext()
 
 const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(null)
+  const [token, setToken] = useState(() => {
+    const tokenFromStorage = localStorage.getItem('token')
+    return tokenFromStorage || '' // Si no hay token en el localStorage, se establece una cadena vacía como valor inicial
+  })
 
   // Función para establecer el token en el contexto y en el almacenamiento local
   const login = (newToken) => {

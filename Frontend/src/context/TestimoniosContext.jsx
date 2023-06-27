@@ -1,9 +1,12 @@
-import React, { createContext, useState, useEffect } from 'react'
+import React, { createContext, useState, useEffect, useContext } from 'react'
+import { AuthContext } from './AuthContext'
 
+// @ts-ignore
 export const TestimoniosContext = createContext()
 
 export function TestimoniosProvider({ children }) {
   const [testimonios, setTestimonios] = useState([])
+  const { token } = useContext(AuthContext)
 
   useEffect(() => {
     fetch('http://localhost:3000/testimonios')
@@ -23,6 +26,7 @@ export function TestimoniosProvider({ children }) {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
+          // @ts-ignore
           setTestimonios([...testimonios, data.testimonio])
         } else {
           throw new Error(data.message)
@@ -32,45 +36,70 @@ export function TestimoniosProvider({ children }) {
   }
 
   const editarTestimonio = (id, testimonioActualizado) => {
-    fetch(`http://localhost:3000/testimonios/editar/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(testimonioActualizado),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          setTestimonios(
-            testimonios.map((testimonio) =>
-              testimonio._id === id ? data.testimonio : testimonio
-            )
-          )
-        } else {
-          throw new Error(data.message)
-        }
+    if (token) {
+      fetch(`http://localhost:3000/testimonios/editar/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: token,
+        },
+        body: JSON.stringify(testimonioActualizado),
       })
-      .catch((error) => console.error('Error al editar el testimonio:', error))
+        .then((response) => {
+          if (response.ok) {
+            return response.json()
+          } else {
+            throw new Error('Error al editar el testimonio')
+          }
+        })
+        .then((data) => {
+          if (data.success) {
+            setTestimonios(
+              // @ts-ignore
+              testimonios.map((testimonio) =>
+                // @ts-ignore
+                testimonio._id === id ? data.testimonio : testimonio
+              )
+            )
+          } else {
+            throw new Error(data.message)
+          }
+        })
+        .catch((error) =>
+          console.error('Error al editar el testimonio:', error)
+        )
+    }
   }
 
   const eliminarTestimonio = (id) => {
-    fetch(`http://localhost:3000/testimonios/eliminar/${id}`, {
-      method: 'DELETE',
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          setTestimonios(
-            testimonios.filter((testimonio) => testimonio._id !== id)
-          )
-        } else {
-          throw new Error(data.message)
-        }
+    if (token) {
+      fetch(`http://localhost:3000/testimonios/eliminar/${id}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: token,
+        },
       })
-      .catch((error) =>
-        console.error('Error al eliminar el testimonio:', error)
-      )
+        .then((response) => {
+          if (response.ok) {
+            return response.json()
+          } else {
+            throw new Error('Error al eliminar el testimonio')
+          }
+        })
+        .then((data) => {
+          if (data.success) {
+            setTestimonios(
+              // @ts-ignore
+              testimonios.filter((testimonio) => testimonio._id !== id)
+            )
+          } else {
+            throw new Error(data.message)
+          }
+        })
+        .catch((error) =>
+          console.error('Error al eliminar el testimonio:', error)
+        )
+    }
   }
 
   const testimoniosContextValue = {

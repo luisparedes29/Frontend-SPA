@@ -1,8 +1,10 @@
-import React, { createContext, useState, useEffect } from 'react'
+import React, { createContext, useState, useEffect, useContext } from 'react'
+import { AuthContext } from './AuthContext'
 
 export const PromocionesContext = createContext()
 
 export function PromocionesProvider({ children }) {
+  const { token } = useContext(AuthContext)
   const [promociones, setPromociones] = useState([])
 
   useEffect(() => {
@@ -13,62 +15,70 @@ export function PromocionesProvider({ children }) {
   }, [])
 
   const crearPromocion = (promocion) => {
-    fetch('http://localhost:3000/promociones/nuevo', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(promocion),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          setPromociones([...promociones, data.promocion])
-        } else {
-          throw new Error(data.message)
-        }
+    if (token) {
+      fetch('http://localhost:3000/promociones/nuevo', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(promocion),
       })
-      .catch((error) => console.error('Error al crear la promoción:', error))
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            setPromociones([...promociones, data.promocion])
+          } else {
+            throw new Error(data.message)
+          }
+        })
+        .catch((error) => console.error('Error al crear la promoción:', error))
+    }
   }
 
   const editarPromocion = (id, promocionActualizada) => {
-    fetch(`http://localhost:3000/promociones/editar/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(promocionActualizada),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          setPromociones(
-            promociones.map((promocion) =>
-              promocion._id === id ? data.promocion : promocion
-            )
-          )
-        } else {
-          throw new Error(data.message)
-        }
+    if (token) {
+      fetch(`http://localhost:3000/promociones/editar/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(promocionActualizada),
       })
-      .catch((error) => console.error('Error al editar la promoción:', error))
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            setPromociones(
+              promociones.map((promocion) =>
+                promocion._id === id ? data.promocion : promocion
+              )
+            )
+          } else {
+            throw new Error(data.message)
+          }
+        })
+        .catch((error) => console.error('Error al editar la promoción:', error))
+    }
   }
 
   const eliminarPromocion = (id) => {
-    fetch(`http://localhost:3000/promociones/eliminar/${id}`, {
-      method: 'DELETE',
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          setPromociones(
-            promociones.filter((promocion) => promocion._id !== id)
-          )
-        } else {
-          throw new Error(data.message)
-        }
+    if (token) {
+      fetch(`http://localhost:3000/promociones/eliminar/${id}`, {
+        method: 'DELETE',
       })
-      .catch((error) => console.error('Error al eliminar la promoción:', error))
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            setPromociones(
+              promociones.filter((promocion) => promocion._id !== id)
+            )
+          } else {
+            throw new Error(data.message)
+          }
+        })
+        .catch((error) =>
+          console.error('Error al eliminar la promoción:', error)
+        )
+    }
   }
 
   const promocionesContextValue = {

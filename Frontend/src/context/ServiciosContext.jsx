@@ -1,8 +1,11 @@
-import React, { createContext, useState, useEffect } from 'react'
+import React, { createContext, useState, useEffect, useContext } from 'react'
+import { AuthContext } from './AuthContext'
 
+// @ts-ignore
 export const ServiciosContext = createContext()
 
 export function ServiciosProvider({ children }) {
+  const { token } = useContext(AuthContext)
   const [servicios, setServicios] = useState([])
 
   useEffect(() => {
@@ -13,60 +16,72 @@ export function ServiciosProvider({ children }) {
   }, [])
 
   const crearServicio = (servicio) => {
-    fetch('http://localhost:3000/servicios/nuevo', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(servicio),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          setServicios([...servicios, data.servicio])
-        } else {
-          throw new Error(data.message)
-        }
+    if (token) {
+      fetch('http://localhost:3000/servicios/nuevo', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(servicio),
       })
-      .catch((error) => console.error('Error al crear el servicio:', error))
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            // @ts-ignore
+            setServicios([...servicios, data.servicio])
+          } else {
+            throw new Error(data.message)
+          }
+        })
+        .catch((error) => console.error('Error al crear el servicio:', error))
+    }
   }
 
   const editarServicio = (id, servicioActualizado) => {
-    fetch(`http://localhost:3000/servicios/editar/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(servicioActualizado),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          setServicios(
-            servicios.map((servicio) =>
-              servicio._id === id ? data.servicio : servicio
-            )
-          )
-        } else {
-          throw new Error(data.message)
-        }
+    if (token) {
+      fetch(`http://localhost:3000/servicios/editar/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(servicioActualizado),
       })
-      .catch((error) => console.error('Error al editar el servicio:', error))
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            setServicios(
+              // @ts-ignore
+              servicios.map((servicio) =>
+                // @ts-ignore
+                servicio._id === id ? data.servicio : servicio
+              )
+            )
+          } else {
+            throw new Error(data.message)
+          }
+        })
+        .catch((error) => console.error('Error al editar el servicio:', error))
+    }
   }
 
   const eliminarServicio = (id) => {
-    fetch(`http://localhost:3000/servicios/eliminar/${id}`, {
-      method: 'DELETE',
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          setServicios(servicios.filter((servicio) => servicio._id !== id))
-        } else {
-          throw new Error(data.message)
-        }
+    if (token) {
+      fetch(`http://localhost:3000/servicios/eliminar/${id}`, {
+        method: 'DELETE',
       })
-      .catch((error) => console.error('Error al eliminar el servicio:', error))
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            // @ts-ignore
+            setServicios(servicios.filter((servicio) => servicio._id !== id))
+          } else {
+            throw new Error(data.message)
+          }
+        })
+        .catch((error) =>
+          console.error('Error al eliminar el servicio:', error)
+        )
+    }
   }
 
   const serviciosContextValue = {
