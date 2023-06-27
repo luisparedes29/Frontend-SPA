@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext'
 
 const Footer = () => {
-  const { logout } = useContext(AuthContext)
+  const { logout, token } = useContext(AuthContext)
 
   return (
     <>
@@ -22,9 +22,20 @@ const Footer = () => {
             <Link to='/Reserva'>
               <div className='px-5 py-2'>Reservaciones</div>
             </Link>
-            <Link to='/Login'>
-              <div className='px-5 py-2'>Login</div>
-            </Link>
+            {token && (
+              <Link to='/Admin'>
+                <div className='px-5 py-2'>ADMIN</div>
+              </Link>
+            )}
+            {token ? (
+              <div onClick={logout}>
+                <div className='px-5 py-2'>Logout</div>
+              </div>
+            ) : (
+              <Link to='/Login'>
+                <div className='px-5 py-2'>Login</div>
+              </Link>
+            )}
           </nav>
           <p className='mt-8 text-base leading-6 text-center'>
             © 2023 Toque Sanador, Inc. Todos los derechos reservados.

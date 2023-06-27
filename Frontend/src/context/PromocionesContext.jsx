@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect, useContext } from 'react'
 import { AuthContext } from './AuthContext'
 
+// @ts-ignore
 export const PromocionesContext = createContext()
 
 export function PromocionesProvider({ children }) {
@@ -26,6 +27,7 @@ export function PromocionesProvider({ children }) {
         .then((response) => response.json())
         .then((data) => {
           if (data.success) {
+            // @ts-ignore
             setPromociones([...promociones, data.promocion])
           } else {
             throw new Error(data.message)
@@ -48,7 +50,9 @@ export function PromocionesProvider({ children }) {
         .then((data) => {
           if (data.success) {
             setPromociones(
+              // @ts-ignore
               promociones.map((promocion) =>
+                // @ts-ignore
                 promocion._id === id ? data.promocion : promocion
               )
             )
@@ -69,6 +73,7 @@ export function PromocionesProvider({ children }) {
         .then((data) => {
           if (data.success) {
             setPromociones(
+              // @ts-ignore
               promociones.filter((promocion) => promocion._id !== id)
             )
           } else {

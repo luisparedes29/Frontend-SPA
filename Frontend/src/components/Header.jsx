@@ -3,6 +3,7 @@ import { useContext, useState } from 'react'
 import logo from '../assets/img/logo.webp'
 import { NavLink } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext'
+import React from 'react'
 
 const Header = ({ condicion = false }) => {
   const [clase, setClase] = useState('-left-full')
@@ -85,7 +86,7 @@ const Header = ({ condicion = false }) => {
                     onClick={cambio}
                     className='p-4  hover:border-letrasHead hover:border-2 hover:bg-marronOscuro hover:bg-opacity-30 hover:rounded-lg sm:text-lg'
                   >
-                    logout
+                    Logout
                   </li>
                 </div>
               ) : (
