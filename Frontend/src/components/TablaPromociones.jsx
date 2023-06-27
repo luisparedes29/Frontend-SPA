@@ -3,7 +3,6 @@
 import { Card, Typography } from '@material-tailwind/react'
 import React, { useContext } from 'react'
 import eliminar from '../assets/img/eliminar.svg'
-import ModalUsuarios from './ModalUsuarios'
 import { PromocionesContext } from '../context/PromocionesContext'
 import ModalPromociones from './ModalPromociones'
 

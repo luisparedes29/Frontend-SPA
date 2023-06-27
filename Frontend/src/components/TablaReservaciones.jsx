@@ -20,7 +20,8 @@ const TABLE_HEAD = [
 ]
 
 function TablaReservaciones() {
-  const { reservaciones } = useContext(ReservacionesContext)
+  const { reservaciones, eliminarReservacion } =
+    useContext(ReservacionesContext)
   return (
     <div>
       <div className='flex justify-around'>
@@ -145,8 +146,11 @@ function TablaReservaciones() {
                     </td>
                     <td className={`${classes} bg-blue-gray-50/50`}>
                       <div className='flex gap-2 justify-center'>
-                        <ModalReservaciones isEdit={true} />
-                        <button className='w-[20px]'>
+                        <ModalReservaciones isEdit={true} _id={_id} />
+                        <button
+                          className='w-[20px]'
+                          onClick={() => eliminarReservacion(_id)}
+                        >
                           <img src={eliminar}></img>
                         </button>
                       </div>

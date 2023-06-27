@@ -38,7 +38,7 @@ export function ReservacionesProvider({ children }) {
 
   const editarReservacion = (id, reservaActualizada) => {
     if (token) {
-      fetch(`http://localhost:3000/reservas/editar/${id}`, {
+      fetch(`http://localhost:3000/reservaciones/editar/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -54,7 +54,8 @@ export function ReservacionesProvider({ children }) {
           }
         })
         .then((data) => {
-          if (data.reserva) {
+          console.log(data)
+          if (data.reservacion) {
             setReservaciones(
               // @ts-ignore
               reservaciones.map((reserva) =>
@@ -71,7 +72,7 @@ export function ReservacionesProvider({ children }) {
   }
 
   const eliminarReservacion = (id) => {
-    fetch(`http://localhost:3000/reservas/eliminar/${id}`, {
+    fetch(`http://localhost:3000/reservaciones/eliminar/${id}`, {
       method: 'DELETE',
       headers: {
         Authorization: token,
@@ -85,7 +86,7 @@ export function ReservacionesProvider({ children }) {
         }
       })
       .then((data) => {
-        if (data.reserva) {
+        if (data.reservacion) {
           setReservaciones(
             // @ts-ignore
             reservaciones.filter((reserva) => reserva._id !== id)
