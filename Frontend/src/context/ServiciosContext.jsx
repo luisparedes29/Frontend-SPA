@@ -21,6 +21,7 @@ export function ServiciosProvider({ children }) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: token,
         },
         body: JSON.stringify(servicio),
       })
@@ -43,6 +44,7 @@ export function ServiciosProvider({ children }) {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: token,
         },
         body: JSON.stringify(servicioActualizado),
       })
@@ -68,6 +70,10 @@ export function ServiciosProvider({ children }) {
     if (token) {
       fetch(`http://localhost:3000/servicios/eliminar/${id}`, {
         method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: token,
+        },
       })
         .then((response) => response.json())
         .then((data) => {

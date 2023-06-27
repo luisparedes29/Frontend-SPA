@@ -1,19 +1,34 @@
 import { Button, Label, Modal, TextInput, Select } from 'flowbite-react'
 import React from 'react'
-import { useState, useRef } from 'react'
+import { useState, useRef, useContext } from 'react'
 import editar from '../assets/img/editar.svg'
+import { ServiciosContext } from '../context/ServiciosContext'
+import { PromocionesContext } from '../context/PromocionesContext'
 const ModalPromociones = ({ isEdit }) => {
   const [openModal, setOpenModal] = useState()
+  const { servicios } = useContext(ServiciosContext)
+  const { crearPromocion } = useContext(PromocionesContext)
   const descuentoRef = useRef(null)
   const selectRef = useRef(null)
+  const codigoRef = useRef(null)
   const props = { openModal, setOpenModal }
 
   // isEdit ? fetch('').then(() => {}) : fetch('').then(() => {})
   const handleButtonSubmit = (e) => {
     e.preventDefault()
-    const value = descuentoRef.current.value
-    const value2 = selectRef.current.value
-    console.log(value, value2)
+    const descuento = descuentoRef.current.value
+    const servicio = selectRef.current.value
+    const codigoDescuento = codigoRef.current.value
+    crearPromocion({
+      descuento,
+      servicio,
+      codigoDescuento,
+    })
+    props.setOpenModal(undefined)
+
+    console.log({ descuento, servicio, codigoDescuento })
+    descuentoRef.current.value = null
+    codigoRef.current.value = null
   }
 
   return (
@@ -48,8 +63,9 @@ const ModalPromociones = ({ isEdit }) => {
                   />
                 </div>
                 <Select ref={selectRef}>
-                  <option>Hombre</option>
-                  <option>Mujer</option>
+                  {servicios.map((servicio) => (
+                    <option key={servicio._id}>{servicio.servicio}</option>
+                  ))}
                 </Select>
               </div>
               <div>
@@ -71,7 +87,11 @@ const ModalPromociones = ({ isEdit }) => {
                     value='Codigo de Descuento'
                   />
                 </div>
-                <TextInput type='text' placeholder='Ingresa el Codigo' />
+                <TextInput
+                  type='text'
+                  placeholder='Ingresa el Codigo'
+                  ref={codigoRef}
+                />
               </div>
               <div className='w-full flex justify-center'>
                 <Button type='submit' className='bg-backPinkOsucuro'>

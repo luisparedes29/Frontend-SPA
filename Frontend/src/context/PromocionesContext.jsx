@@ -21,6 +21,7 @@ export function PromocionesProvider({ children }) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: token,
         },
         body: JSON.stringify(promocion),
       })
@@ -43,6 +44,7 @@ export function PromocionesProvider({ children }) {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: token,
         },
         body: JSON.stringify(promocionActualizada),
       })
@@ -68,6 +70,10 @@ export function PromocionesProvider({ children }) {
     if (token) {
       fetch(`http://localhost:3000/promociones/eliminar/${id}`, {
         method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: token,
+        },
       })
         .then((response) => response.json())
         .then((data) => {
