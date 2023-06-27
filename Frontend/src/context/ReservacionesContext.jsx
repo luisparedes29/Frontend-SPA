@@ -25,7 +25,8 @@ export function ReservacionesProvider({ children }) {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.success) {
+        console.log(data)
+        if (data.reservacion._id) {
           // @ts-ignore
           setReservaciones([...reservaciones, data.reservacion])
         } else {
@@ -53,7 +54,7 @@ export function ReservacionesProvider({ children }) {
           }
         })
         .then((data) => {
-          if (data.success) {
+          if (data.reserva) {
             setReservaciones(
               // @ts-ignore
               reservaciones.map((reserva) =>
@@ -84,7 +85,7 @@ export function ReservacionesProvider({ children }) {
         }
       })
       .then((data) => {
-        if (data.success) {
+        if (data.reserva) {
           setReservaciones(
             // @ts-ignore
             reservaciones.filter((reserva) => reserva._id !== id)

@@ -25,7 +25,7 @@ export function TestimoniosProvider({ children }) {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.success) {
+        if (data.testimonio) {
           // @ts-ignore
           setTestimonios([...testimonios, data.testimonio])
         } else {
@@ -53,7 +53,7 @@ export function TestimoniosProvider({ children }) {
           }
         })
         .then((data) => {
-          if (data.success) {
+          if (data.testimonio) {
             setTestimonios(
               // @ts-ignore
               testimonios.map((testimonio) =>

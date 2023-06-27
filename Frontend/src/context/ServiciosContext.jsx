@@ -26,7 +26,7 @@ export function ServiciosProvider({ children }) {
       })
         .then((response) => response.json())
         .then((data) => {
-          if (data.success) {
+          if (data.servicio) {
             // @ts-ignore
             setServicios([...servicios, data.servicio])
           } else {
@@ -48,7 +48,7 @@ export function ServiciosProvider({ children }) {
       })
         .then((response) => response.json())
         .then((data) => {
-          if (data.success) {
+          if (data.servicio) {
             setServicios(
               // @ts-ignore
               servicios.map((servicio) =>
@@ -71,7 +71,7 @@ export function ServiciosProvider({ children }) {
       })
         .then((response) => response.json())
         .then((data) => {
-          if (data.success) {
+          if (data.servicio) {
             // @ts-ignore
             setServicios(servicios.filter((servicio) => servicio._id !== id))
           } else {

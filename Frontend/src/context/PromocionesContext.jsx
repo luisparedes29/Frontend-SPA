@@ -26,7 +26,7 @@ export function PromocionesProvider({ children }) {
       })
         .then((response) => response.json())
         .then((data) => {
-          if (data.success) {
+          if (data.promocion) {
             // @ts-ignore
             setPromociones([...promociones, data.promocion])
           } else {
@@ -48,7 +48,7 @@ export function PromocionesProvider({ children }) {
       })
         .then((response) => response.json())
         .then((data) => {
-          if (data.success) {
+          if (data.promocion) {
             setPromociones(
               // @ts-ignore
               promociones.map((promocion) =>
@@ -71,7 +71,7 @@ export function PromocionesProvider({ children }) {
       })
         .then((response) => response.json())
         .then((data) => {
-          if (data.success) {
+          if (data.promocion) {
             setPromociones(
               // @ts-ignore
               promociones.filter((promocion) => promocion._id !== id)

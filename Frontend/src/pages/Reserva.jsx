@@ -11,17 +11,19 @@ import {
 } from '@material-tailwind/react'
 import { Link } from 'react-router-dom'
 import { ServiciosContext } from '../context/ServiciosContext'
+import { ReservacionesContext } from '../context/ReservacionesContext'
 
 const Reserva = () => {
   const [nombre, setNombre] = useState('')
   const [cedula, setCedula] = useState('')
   const [correo, setCorreo] = useState('')
-  const [cantidadPersonas, setCantidadPersonas] = useState(1)
+  const [personas, setCantidadPersonas] = useState(1)
   const [servicio, setServicio] = useState('')
   const [codigoDescuento, setCodigoDescuento] = useState('')
   const [fecha, setFecha] = useState('')
   const [hora, setHora] = useState('')
   const { servicios } = useContext(ServiciosContext)
+  const { crearReservacion } = useContext(ReservacionesContext)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -31,12 +33,13 @@ const Reserva = () => {
       nombre,
       cedula,
       correo,
-      cantidadPersonas,
+      personas,
       servicio,
       codigoDescuento,
       fecha,
       hora,
     }
+    crearReservacion(data)
 
     // Aquí puedes realizar la lógica de envío del formulario
     console.log(data)
@@ -86,7 +89,7 @@ const Reserva = () => {
                 label='Cantidad de personas'
                 className='bg-white'
                 min='1'
-                value={cantidadPersonas}
+                value={personas}
                 onChange={(e) => setCantidadPersonas(e.target.value)}
               />
               <Select
@@ -100,11 +103,6 @@ const Reserva = () => {
                     {servicio.servicio}
                   </Option>
                 ))}
-                {/* <Option value='Material'>Material Tailwind HTML</Option>
-                <Option value='Otro'>Material Tailwind React</Option>
-                <Option value='otro mas'>Material Tailwind Vue</Option>
-                <Option value='otroo'>Material Tailwind Angular</Option>
-                <Option value='otrico'>Material Tailwind Svelte</Option> */}
               </Select>
               <Input
                 size='lg'
