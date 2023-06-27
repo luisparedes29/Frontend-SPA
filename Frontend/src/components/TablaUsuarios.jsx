@@ -10,7 +10,7 @@ import { UsuariosContext } from '../context/UsuariosContext'
 const TABLE_HEAD = ['Nombre', 'Usuario', 'Acciones']
 
 function TablaUsuarios() {
-  const { usuarios } = useContext(UsuariosContext)
+  const { usuarios, eliminarUsuario } = useContext(UsuariosContext)
   return (
     <div>
       <div className='flex justify-around'>
@@ -53,7 +53,7 @@ function TablaUsuarios() {
                         color='blue-gray'
                         className='font-normal'
                       >
-                        {nombre}
+                        {nombre && nombre}
                       </Typography>
                     </td>
                     <td className={`${classes} bg-blue-gray-50/50`}>
@@ -62,13 +62,16 @@ function TablaUsuarios() {
                         color='blue-gray'
                         className='font-normal'
                       >
-                        {usuario}
+                        {usuario && usuario}
                       </Typography>
                     </td>
                     <td className={`${classes} bg-blue-gray-50/50`}>
                       <div className='flex gap-2 justify-center'>
-                        <ModalUsuarios isEdit={true} />
-                        <button className='w-[20px]'>
+                        <ModalUsuarios isEdit={true} _id={_id} />
+                        <button
+                          className='w-[20px]'
+                          onClick={() => eliminarUsuario(_id)}
+                        >
                           <img src={eliminar}></img>
                         </button>
                       </div>

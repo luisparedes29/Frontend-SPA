@@ -46,7 +46,8 @@ export function UsuariosProvider({ children }) {
           }
         })
         .then((data) => {
-          if (data.success) {
+          console.log(data)
+          if (data.usuario) {
             setUsuarios([...usuarios, data.usuario])
           } else {
             throw new Error(data.message)
@@ -74,7 +75,7 @@ export function UsuariosProvider({ children }) {
           }
         })
         .then((data) => {
-          if (data.success) {
+          if (data.usuario) {
             setUsuarios(
               usuarios.map((usuario) =>
                 usuario._id === id ? data.usuario : usuario
@@ -104,7 +105,7 @@ export function UsuariosProvider({ children }) {
           }
         })
         .then((data) => {
-          if (data.success) {
+          if (data.usuario) {
             setUsuarios(usuarios.filter((usuario) => usuario._id !== id))
           } else {
             throw new Error(data.message)

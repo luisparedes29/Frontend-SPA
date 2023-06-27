@@ -1,9 +1,48 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, useRef } from 'react'
 import editar from '../assets/img/editar.svg'
 import { Button, Label, Modal, Select, TextInput } from 'flowbite-react'
+import { ServiciosContext } from '../context/ServiciosContext'
 
-export default function ModalServicios({ isEdit }) {
+export default function ModalServicios({ isEdit, _id = null }) {
   const [openModal, setOpenModal] = useState()
+  const { crearServicio, editarServicio } = useContext(ServiciosContext)
+
+  const servicioRef = useRef(null)
+  const precioRef = useRef(null)
+  const descripcionRef = useRef(null)
+  const tiempoRef = useRef(null)
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const servicio = servicioRef.current.value
+    const precio = precioRef.current.value
+    const descripcion = descripcionRef.current.value
+    const duracion = tiempoRef.current.value
+
+    isEdit
+      ? await editarServicio(_id, {
+          servicio,
+          precio,
+          descripcion,
+          duracion,
+        })
+      : await crearServicio({
+          servicio,
+          precio,
+          descripcion,
+          duracion,
+        })
+
+    servicioRef.current.value = ''
+    precioRef.current.value = ''
+    descripcionRef.current.value = ''
+    tiempoRef.current.value = ''
+
+    setOpenModal(undefined)
+
+    //cerramos modal
+  }
+
   const props = { openModal, setOpenModal }
 
   //isEdit ? fetch('').then(() => {}) : fetch('').then(() => {})
@@ -27,7 +66,7 @@ export default function ModalServicios({ isEdit }) {
       >
         <Modal.Header className='bg-backPink' />
         <Modal.Body className='bg-backPink'>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className='space-y-6'>
               <h3 className='text-xl font-medium text-gray-900 dark:text-white'>
                 Ingresa los datos del Servicio
@@ -38,6 +77,7 @@ export default function ModalServicios({ isEdit }) {
                 </div>
                 <TextInput
                   type='text'
+                  ref={servicioRef}
                   placeholder='Ingresa el nombre del servicio'
                   required
                 />
@@ -48,6 +88,7 @@ export default function ModalServicios({ isEdit }) {
                 </div>
                 <TextInput
                   type='number'
+                  ref={precioRef}
                   placeholder='Ingresa el Precio'
                   min='1'
                   required
@@ -59,6 +100,7 @@ export default function ModalServicios({ isEdit }) {
                 </div>
                 <TextInput
                   type='time'
+                  ref={tiempoRef}
                   placeholder='Ingresa el tiempo'
                   required
                 />
@@ -70,6 +112,7 @@ export default function ModalServicios({ isEdit }) {
                 </div>
                 <TextInput
                   type='text'
+                  ref={descripcionRef}
                   placeholder='Ingresa la descripcion'
                   required
                 />

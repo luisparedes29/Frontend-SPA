@@ -85,7 +85,7 @@ export default function TablaServicios() {
                     </td>
                     <td className={`${classes} bg-blue-gray-50/50`}>
                       <div className='flex gap-2 justify-center items-center'>
-                        <ModalServicios isEdit={true} />
+                        <ModalServicios isEdit={true} _id={_id} />
                         <button className='w-[20px]'>
                           <img src={eliminar}></img>
                         </button>

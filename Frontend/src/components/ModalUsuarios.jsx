@@ -1,19 +1,37 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useContext } from 'react'
 import editar from '../assets/img/editar.svg'
 import { Button, Label, Modal, TextInput } from 'flowbite-react'
+import { UsuariosContext } from '../context/UsuariosContext'
 
-export default function ModalUsuarios({ isEdit }) {
+export default function ModalUsuarios({ isEdit, _id = null }) {
   const [openModal, setOpenModal] = useState(false)
-  const [nombre, setNombre] = useState('')
-  const [usuario, setUsuario] = useState('')
-  const [contraseña, setContraseña] = useState('')
+  const { crearUsuario, editarUsuario } = useContext(UsuariosContext)
+  const nombreRef = useRef(null)
+  const usuarioRef = useRef(null)
+  const contraseñaRef = useRef(null)
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    // Aquí puedes agregar la lógica para crear el usuario con los datos ingresados
-    console.log('Nombre:', nombre)
-    console.log('Usuario:', usuario)
-    console.log('Contraseña:', contraseña)
+    const nombre = nombreRef.current.value
+    const usuario = usuarioRef.current.value
+    const contraseña = contraseñaRef.current.value
+
+    isEdit
+      ? editarUsuario(_id, {
+          nombre,
+          usuario,
+          contraseña,
+        })
+      : crearUsuario({
+          nombre,
+          usuario,
+          contraseña,
+        })
+    //setteamos los inputs
+    nombreRef.current.value = ''
+    usuarioRef.current.value = ''
+    contraseñaRef.current.value = ''
+
     setOpenModal(false)
   }
 
@@ -50,9 +68,8 @@ export default function ModalUsuarios({ isEdit }) {
                 <TextInput
                   type='text'
                   placeholder='Ingresa el nombre de la persona'
+                  ref={nombreRef}
                   required
-                  value={nombre}
-                  onChange={(e) => setNombre(e.target.value)}
                 />
               </div>
               <div>
@@ -62,9 +79,8 @@ export default function ModalUsuarios({ isEdit }) {
                 <TextInput
                   type='text'
                   placeholder='Ingresa el nombre de usuario'
+                  ref={usuarioRef}
                   required
-                  value={usuario}
-                  onChange={(e) => setUsuario(e.target.value)}
                 />
               </div>
               <div>
@@ -74,9 +90,8 @@ export default function ModalUsuarios({ isEdit }) {
                 <TextInput
                   type='password'
                   placeholder='Ingresa la contraseña'
+                  ref={contraseñaRef}
                   required
-                  value={contraseña}
-                  onChange={(e) => setContraseña(e.target.value)}
                 />
               </div>
               <div className='w-full flex justify-center'>
