@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react'
 import { AuthContext } from './AuthContext'
+import toast from 'react-hot-toast'
 
 // @ts-ignore
 export const TestimoniosContext = createContext()
@@ -28,11 +29,12 @@ export function TestimoniosProvider({ children }) {
         if (data.testimonio) {
           // @ts-ignore
           setTestimonios([...testimonios, data.testimonio])
+          toast.success('Testimonio creado con exito')
         } else {
           throw new Error(data.message)
         }
       })
-      .catch((error) => console.error('Error al crear el testimonio:', error))
+      .catch((error) => toast.error('Error al crear el testimonio:', error))
   }
 
   const editarTestimonio = (id, testimonioActualizado) => {
@@ -61,13 +63,12 @@ export function TestimoniosProvider({ children }) {
                 testimonio._id === id ? data.testimonio : testimonio
               )
             )
+            toast.success('Servicio editadp con exito')
           } else {
             throw new Error(data.message)
           }
         })
-        .catch((error) =>
-          console.error('Error al editar el testimonio:', error)
-        )
+        .catch((error) => toast.error('Error al editar el testimonio:', error))
     }
   }
 
@@ -92,12 +93,13 @@ export function TestimoniosProvider({ children }) {
               // @ts-ignore
               testimonios.filter((testimonio) => testimonio._id !== id)
             )
+            toast.success('Servicio eliminado con exito')
           } else {
             throw new Error(data.message)
           }
         })
         .catch((error) =>
-          console.error('Error al eliminar el testimonio:', error)
+          toast.error('Error al eliminar el testimonio:', error)
         )
     }
   }

@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react'
 import { AuthContext } from './AuthContext'
+import toast from 'react-hot-toast'
 
 // @ts-ignore
 export const PromocionesContext = createContext()
@@ -30,11 +31,14 @@ export function PromocionesProvider({ children }) {
           if (data.promocion) {
             // @ts-ignore
             setPromociones([...promociones, data.promocion])
+            toast.success('Promocion Creada')
           } else {
             throw new Error(data.message)
           }
         })
-        .catch((error) => console.error('Error al crear la promoción:', error))
+        .catch((error) =>
+          toast.error('Ha ocurrido un problema al crear la promocion', error)
+        )
     }
   }
 
@@ -58,11 +62,14 @@ export function PromocionesProvider({ children }) {
                 promocion._id === id ? data.promocion : promocion
               )
             )
+            toast.success('Promocion Editada')
           } else {
             throw new Error(data.message)
           }
         })
-        .catch((error) => console.error('Error al editar la promoción:', error))
+        .catch((error) =>
+          toast.error('Ha ocurrido un problema al editar la promocion', error)
+        )
     }
   }
 
@@ -82,13 +89,12 @@ export function PromocionesProvider({ children }) {
               // @ts-ignore
               promociones.filter((promocion) => promocion._id !== id)
             )
+            toast.success('Promocion Eliminada')
           } else {
             throw new Error(data.message)
           }
         })
-        .catch((error) =>
-          console.error('Error al eliminar la promoción:', error)
-        )
+        .catch((error) => toast.error('Error al eliminar la promoción:', error))
     }
   }
 

@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react'
 import { AuthContext } from './AuthContext'
+import toast from 'react-hot-toast'
 
 // @ts-ignore
 export const ServiciosContext = createContext()
@@ -30,11 +31,12 @@ export function ServiciosProvider({ children }) {
           if (data.servicio) {
             // @ts-ignore
             setServicios([...servicios, data.servicio])
+            toast.success('Servicio creado con exito')
           } else {
             throw new Error(data.message)
           }
         })
-        .catch((error) => console.error('Error al crear el servicio:', error))
+        .catch((error) => toast.error('Error al crear el servicio:', error))
     }
   }
 
@@ -58,11 +60,12 @@ export function ServiciosProvider({ children }) {
                 servicio._id === id ? data.servicio : servicio
               )
             )
+            toast.success('Servicio editado con exito')
           } else {
             throw new Error(data.message)
           }
         })
-        .catch((error) => console.error('Error al editar el servicio:', error))
+        .catch((error) => toast.error('Error al editar el servicio:', error))
     }
   }
 
@@ -80,13 +83,12 @@ export function ServiciosProvider({ children }) {
           if (data.servicio) {
             // @ts-ignore
             setServicios(servicios.filter((servicio) => servicio._id !== id))
+            toast.success('Servicio eliminado con exito')
           } else {
             throw new Error(data.message)
           }
         })
-        .catch((error) =>
-          console.error('Error al eliminar el servicio:', error)
-        )
+        .catch((error) => toast.error('Error al eliminar el servicio:', error))
     }
   }
 

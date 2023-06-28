@@ -17,7 +17,7 @@ const Header = ({ condicion = false }) => {
   }
   return (
     <>
-      <div>
+      <header>
         <div
           className={
             'flex items-center justify-between px-10 py-2 ' +
@@ -106,7 +106,7 @@ const Header = ({ condicion = false }) => {
             />
           </nav>
         </div>
-      </div>
+      </header>
     </>
   )
 }

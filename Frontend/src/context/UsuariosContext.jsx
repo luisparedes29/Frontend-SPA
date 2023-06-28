@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react'
 import { AuthContext } from './AuthContext'
+import toast from 'react-hot-toast'
 
 export const UsuariosContext = createContext()
 
@@ -49,11 +50,12 @@ export function UsuariosProvider({ children }) {
           console.log(data)
           if (data.usuario) {
             setUsuarios([...usuarios, data.usuario])
+            toast.success('Usuario creado con exito')
           } else {
             throw new Error(data.message)
           }
         })
-        .catch((error) => console.error('Error al crear el usuario:', error))
+        .catch((error) => toast.error('Error al crear el usuario:', error))
     }
   }
 
@@ -81,11 +83,12 @@ export function UsuariosProvider({ children }) {
                 usuario._id === id ? data.usuario : usuario
               )
             )
+            toast.success('Usuario editado con exito')
           } else {
             throw new Error(data.message)
           }
         })
-        .catch((error) => console.error('Error al editar el usuario:', error))
+        .catch((error) => toast.error('Error al editar el usuario:', error))
     }
   }
 
@@ -107,11 +110,12 @@ export function UsuariosProvider({ children }) {
         .then((data) => {
           if (data.usuario) {
             setUsuarios(usuarios.filter((usuario) => usuario._id !== id))
+            toast.success('Usuario eliminado con exito')
           } else {
             throw new Error(data.message)
           }
         })
-        .catch((error) => console.error('Error al eliminar el usuario:', error))
+        .catch((error) => toast.error('Error al eliminar el usuario:', error))
     }
   }
 

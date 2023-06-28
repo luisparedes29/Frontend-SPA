@@ -50,115 +50,116 @@ function TablaReservaciones() {
             </tr>
           </thead>
           <tbody>
-            {reservaciones.map(
-              (
-                {
-                  nombre,
-                  correo,
-                  cedula,
-                  servicio,
-                  personas,
-                  codigoDescuento,
-                  fecha,
-                  hora,
-                  _id,
-                },
-                index
-              ) => {
-                const isLast = index === reservaciones.length - 1
-                const classes = isLast
-                  ? 'p-2'
-                  : 'p-2 border-b border-blue-gray-50'
+            {reservaciones &&
+              reservaciones.map(
+                (
+                  {
+                    nombre,
+                    correo,
+                    cedula,
+                    servicio,
+                    personas,
+                    codigoDescuento,
+                    fecha,
+                    hora,
+                    _id,
+                  },
+                  index
+                ) => {
+                  const isLast = index === reservaciones.length - 1
+                  const classes = isLast
+                    ? 'p-2'
+                    : 'p-2 border-b border-blue-gray-50'
 
-                return (
-                  <tr key={_id}>
-                    <td className={classes}>
-                      <Typography
-                        variant='small'
-                        color='blue-gray'
-                        className='font-normal'
-                      >
-                        {nombre}
-                      </Typography>
-                    </td>
-                    <td className={`${classes} bg-blue-gray-50/50`}>
-                      <Typography
-                        variant='small'
-                        color='blue-gray'
-                        className='font-normal'
-                      >
-                        {cedula}
-                      </Typography>
-                    </td>
-                    <td className={`${classes} bg-blue-gray-50/50`}>
-                      <Typography
-                        variant='small'
-                        color='blue-gray'
-                        className='font-normal'
-                      >
-                        {correo}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant='small'
-                        color='blue-gray'
-                        className='font-normal'
-                      >
-                        {servicio}
-                      </Typography>
-                    </td>
-                    <td className={`${classes} bg-blue-gray-50/50`}>
-                      <Typography
-                        variant='small'
-                        color='blue-gray'
-                        className='font-normal'
-                      >
-                        {personas}
-                      </Typography>
-                    </td>
-                    <td className={`${classes} bg-blue-gray-50/50`}>
-                      <Typography
-                        variant='small'
-                        color='blue-gray'
-                        className='font-normal'
-                      >
-                        {codigoDescuento}
-                      </Typography>
-                    </td>
-                    <td className={`${classes} bg-blue-gray-50/50`}>
-                      <Typography
-                        variant='small'
-                        color='blue-gray'
-                        className='font-normal'
-                      >
-                        {fecha}
-                      </Typography>
-                    </td>
-                    <td className={`${classes} bg-blue-gray-50/50`}>
-                      <Typography
-                        variant='small'
-                        color='blue-gray'
-                        className='font-normal'
-                      >
-                        {hora}
-                      </Typography>
-                    </td>
-                    <td className={`${classes} bg-blue-gray-50/50`}>
-                      <div className='flex gap-2 justify-center'>
-                        <ModalReservaciones isEdit={true} _id={_id} />
-                        <button
-                          className='w-[20px]'
-                          onClick={() => eliminarReservacion(_id)}
+                  return (
+                    <tr key={_id}>
+                      <td className={classes}>
+                        <Typography
+                          variant='small'
+                          color='blue-gray'
+                          className='font-normal'
                         >
-                          <img src={eliminar}></img>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                )
-              }
-            )}
+                          {nombre}
+                        </Typography>
+                      </td>
+                      <td className={`${classes} bg-blue-gray-50/50`}>
+                        <Typography
+                          variant='small'
+                          color='blue-gray'
+                          className='font-normal'
+                        >
+                          {cedula}
+                        </Typography>
+                      </td>
+                      <td className={`${classes} bg-blue-gray-50/50`}>
+                        <Typography
+                          variant='small'
+                          color='blue-gray'
+                          className='font-normal'
+                        >
+                          {correo}
+                        </Typography>
+                      </td>
+                      <td className={classes}>
+                        <Typography
+                          variant='small'
+                          color='blue-gray'
+                          className='font-normal'
+                        >
+                          {servicio}
+                        </Typography>
+                      </td>
+                      <td className={`${classes} bg-blue-gray-50/50`}>
+                        <Typography
+                          variant='small'
+                          color='blue-gray'
+                          className='font-normal'
+                        >
+                          {personas}
+                        </Typography>
+                      </td>
+                      <td className={`${classes} bg-blue-gray-50/50`}>
+                        <Typography
+                          variant='small'
+                          color='blue-gray'
+                          className='font-normal'
+                        >
+                          {codigoDescuento}
+                        </Typography>
+                      </td>
+                      <td className={`${classes} bg-blue-gray-50/50`}>
+                        <Typography
+                          variant='small'
+                          color='blue-gray'
+                          className='font-normal'
+                        >
+                          {fecha}
+                        </Typography>
+                      </td>
+                      <td className={`${classes} bg-blue-gray-50/50`}>
+                        <Typography
+                          variant='small'
+                          color='blue-gray'
+                          className='font-normal'
+                        >
+                          {hora}
+                        </Typography>
+                      </td>
+                      <td className={`${classes} bg-blue-gray-50/50`}>
+                        <div className='flex gap-2 justify-center'>
+                          <ModalReservaciones isEdit={true} _id={_id} />
+                          <button
+                            className='w-[20px]'
+                            onClick={() => eliminarReservacion(_id)}
+                          >
+                            <img src={eliminar}></img>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  )
+                }
+              )}
           </tbody>
         </table>
       </Card>

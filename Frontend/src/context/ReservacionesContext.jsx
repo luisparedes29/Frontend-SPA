@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react'
 import { AuthContext } from './AuthContext'
-
+import toast from 'react-hot-toast'
 // @ts-ignore
 export const ReservacionesContext = createContext()
 
@@ -25,15 +25,15 @@ export function ReservacionesProvider({ children }) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
         if (data.reservacion._id) {
           // @ts-ignore
           setReservaciones([...reservaciones, data.reservacion])
+          toast.success('Reservacion creada con exito')
         } else {
           throw new Error(data.message)
         }
       })
-      .catch((error) => console.error('Error al crear la reservación:', error))
+      .catch((error) => toast.error('Error al crear la reservación:', error))
   }
 
   const editarReservacion = (id, reservaActualizada) => {
@@ -54,20 +54,20 @@ export function ReservacionesProvider({ children }) {
           }
         })
         .then((data) => {
-          console.log(data)
           if (data.reservacion) {
             setReservaciones(
               // @ts-ignore
               reservaciones.map((reserva) =>
                 // @ts-ignore
-                reserva._id === id ? data.reserva : reserva
+                reserva._id === id ? data.reservacion : reserva
               )
             )
+            toast.success('Reservacion editada con exito')
           } else {
             throw new Error(data.message)
           }
         })
-        .catch((error) => console.error('Error al editar la reserva:', error))
+        .catch((error) => toast.error('Error al editar la reserva:', error))
     }
   }
 
@@ -91,11 +91,12 @@ export function ReservacionesProvider({ children }) {
             // @ts-ignore
             reservaciones.filter((reserva) => reserva._id !== id)
           )
+          toast.success('Reservacion Eliminada con exito')
         } else {
           throw new Error(data.message)
         }
       })
-      .catch((error) => console.error('Error al eliminar la reserva:', error))
+      .catch((error) => toast.error('Error al eliminar la reserva:', error))
   }
 
   const reservacionesContextValue = {

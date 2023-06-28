@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react'
 import jwt_decode from 'jwt-decode'
+import toast from 'react-hot-toast'
 
 const AuthContext = createContext()
 
@@ -14,6 +15,7 @@ const AuthProvider = ({ children }) => {
     console.log('Setting token:', newToken)
     localStorage.setItem('token', newToken)
     setToken(newToken)
+    toast.success('Loggeado')
   }
 
   // Función para eliminar el token del contexto y del almacenamiento local
