@@ -2,6 +2,7 @@ import React, { useState, useRef, useContext } from 'react'
 import editar from '../assets/img/editar.svg'
 import { Button, Label, Modal, TextInput } from 'flowbite-react'
 import { UsuariosContext } from '../context/UsuariosContext'
+import { toast } from 'react-hot-toast'
 
 export default function ModalUsuarios({ isEdit, _id = null }) {
   const [openModal, setOpenModal] = useState(false)
@@ -15,6 +16,17 @@ export default function ModalUsuarios({ isEdit, _id = null }) {
     const nombre = nombreRef.current.value
     const usuario = usuarioRef.current.value
     const contraseña = contraseñaRef.current.value
+
+    if (
+      !nombre ||
+      !usuario ||
+      !contraseña ||
+      nombre.trim() < 1 ||
+      usuario.trim().length < 1 ||
+      contraseña.trim().length < 1
+    ) {
+      return toast.error('Todos los campos son obligatorios')
+    }
 
     isEdit
       ? await editarUsuario(_id, {

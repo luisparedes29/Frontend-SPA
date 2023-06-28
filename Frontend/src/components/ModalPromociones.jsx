@@ -4,6 +4,7 @@ import { useState, useRef, useContext } from 'react'
 import editar from '../assets/img/editar.svg'
 import { ServiciosContext } from '../context/ServiciosContext'
 import { PromocionesContext } from '../context/PromocionesContext'
+import { toast } from 'react-hot-toast'
 const ModalPromociones = ({ isEdit, _id = null }) => {
   const [openModal, setOpenModal] = useState()
   const { servicios } = useContext(ServiciosContext)
@@ -19,6 +20,19 @@ const ModalPromociones = ({ isEdit, _id = null }) => {
     const descuento = descuentoRef.current.value
     const servicio = selectRef.current.value
     const codigoDescuento = codigoRef.current.value
+    if (
+      !descuento ||
+      descuento.trim() < 1 ||
+      !servicio ||
+      servicio.trim() < 1 ||
+      !codigoDescuento ||
+      codigoDescuento.trim() < 1
+    ) {
+      // Realizar validación de campos vacíos
+      toast.error('Por favor, completa todos los campos requeridos')
+      return
+    }
+
     isEdit
       ? await editarPromocion(_id, { descuento, servicio, codigoDescuento })
       : await crearPromocion({
@@ -65,7 +79,7 @@ const ModalPromociones = ({ isEdit, _id = null }) => {
                     value='Selecciona Servicio'
                   />
                 </div>
-                <Select ref={selectRef}>
+                <Select ref={selectRef} required>
                   {servicios.map((servicio) => (
                     <option key={servicio._id}>{servicio.servicio}</option>
                   ))}
@@ -94,6 +108,7 @@ const ModalPromociones = ({ isEdit, _id = null }) => {
                   type='text'
                   placeholder='Ingresa el Codigo'
                   ref={codigoRef}
+                  required
                 />
               </div>
               <div className='w-full flex justify-center'>

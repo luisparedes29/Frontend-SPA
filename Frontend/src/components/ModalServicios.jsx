@@ -2,6 +2,7 @@ import React, { useState, useContext, useRef } from 'react'
 import editar from '../assets/img/editar.svg'
 import { Button, Label, Modal, Select, TextInput } from 'flowbite-react'
 import { ServiciosContext } from '../context/ServiciosContext'
+import { toast } from 'react-hot-toast'
 
 export default function ModalServicios({ isEdit, _id = null }) {
   const [openModal, setOpenModal] = useState()
@@ -18,6 +19,19 @@ export default function ModalServicios({ isEdit, _id = null }) {
     const precio = precioRef.current.value
     const descripcion = descripcionRef.current.value
     const duracion = tiempoRef.current.value
+
+    if (
+      !servicio ||
+      servicio.trim() < 1 ||
+      !precio ||
+      precio.trim() < 1 ||
+      !descripcion ||
+      descripcion.trim() < 1 ||
+      !duracion ||
+      duracion.trim() < 1
+    ) {
+      return toast.error('Todos los campos son obligatorios')
+    }
 
     isEdit
       ? await editarServicio(_id, {

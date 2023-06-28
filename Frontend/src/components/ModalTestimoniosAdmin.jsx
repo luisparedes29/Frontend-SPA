@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import { useState, useContext, useRef } from 'react'
 import editar from '../assets/img/editar.svg'
 import { TestimoniosContext } from '../context/TestimoniosContext'
+import { toast } from 'react-hot-toast'
 const ModalTestimoniosAdmin = ({ isEdit, _id = null }) => {
   const [openModal, setOpenModal] = useState()
   const props = { openModal, setOpenModal }
@@ -17,6 +18,19 @@ const ModalTestimoniosAdmin = ({ isEdit, _id = null }) => {
     const sexo = sexoRef.current.value
     const nombre = nombreRef.current.value
     const testimonio = testimonioRef.current.value
+
+    if (
+      !sexo ||
+      !nombre ||
+      !testimonio ||
+      sexo.trim() < 1 ||
+      nombre.trim() < 1 ||
+      testimonio.trim() < 1
+    ) {
+      return toast.error(
+        'Todos los campos son obligatorios, por favor completa cada uno'
+      )
+    }
     isEdit
       ? await editarTestimonio(_id, {
           sexo,

@@ -3,6 +3,7 @@ import editar from '../assets/img/editar.svg'
 import { Button, Label, Modal, Select, TextInput } from 'flowbite-react'
 import { ServiciosContext } from '../context/ServiciosContext'
 import { ReservacionesContext } from '../context/ReservacionesContext'
+import { toast } from 'react-hot-toast'
 export default function ModalReservaciones({ isEdit, _id }) {
   const [openModal, setOpenModal] = useState()
   const props = { openModal, setOpenModal }
@@ -30,6 +31,27 @@ export default function ModalReservaciones({ isEdit, _id }) {
     const correo = correoRef.current.value
     const fecha = fechaRef.current.value
     const hora = horaRef.current.value
+
+    if (
+      !nombre ||
+      nombre.trim() < 1 ||
+      !cedula ||
+      cedula.trim() < 1 ||
+      !personas ||
+      personas.trim() < 1 ||
+      !servicio ||
+      servicio.trim() < 1 ||
+      !correo ||
+      correo.trim() < 1 ||
+      !fecha ||
+      fecha.trim() < 1 ||
+      !hora ||
+      hora.trim() < 1
+    ) {
+      // Realizar validación de campos vacíos
+      toast.error('Por favor, completa todos los campos requeridos')
+      return
+    }
 
     isEdit
       ? editarReservacion(_id, {
@@ -144,7 +166,6 @@ export default function ModalReservaciones({ isEdit, _id }) {
                   ref={cantidadRef}
                   placeholder='Ingresa la cantidad de personas'
                   min='1'
-                  required
                 />
               </div>
               <div>

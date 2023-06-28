@@ -12,6 +12,7 @@ import {
 import { Link } from 'react-router-dom'
 import { ServiciosContext } from '../context/ServiciosContext'
 import { ReservacionesContext } from '../context/ReservacionesContext'
+import { toast } from 'react-hot-toast'
 
 const Reserva = () => {
   const [nombre, setNombre] = useState('')
@@ -27,6 +28,25 @@ const Reserva = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
+    if (
+      !nombre ||
+      !cedula ||
+      !correo ||
+      !personas ||
+      !servicio ||
+      !fecha ||
+      !hora ||
+      nombre.trim() === '' ||
+      cedula.trim() === '' ||
+      correo.trim() === '' ||
+      personas <= 0 ||
+      servicio.trim() == '' ||
+      fecha.trim() === '' ||
+      hora.trim() === ''
+    ) {
+      return toast.error('Todos los campos son obligatorios')
+    }
 
     // Aquí puedes enviar los datos del formulario a través de una petición HTTP
     const data = {
@@ -67,6 +87,7 @@ const Reserva = () => {
                 className='bg-white'
                 value={nombre}
                 onChange={(e) => setNombre(e.target.value)}
+                required
               />
               <Input
                 size='lg'
@@ -74,6 +95,7 @@ const Reserva = () => {
                 className='bg-white'
                 value={cedula}
                 onChange={(e) => setCedula(e.target.value)}
+                required
               />
               <Input
                 type='email'
@@ -82,6 +104,7 @@ const Reserva = () => {
                 className='bg-white'
                 value={correo}
                 onChange={(e) => setCorreo(e.target.value)}
+                required
               />
               <Input
                 type='number'
@@ -90,6 +113,7 @@ const Reserva = () => {
                 className='bg-white'
                 min='1'
                 value={personas}
+                required
                 onChange={(e) => setCantidadPersonas(e.target.value)}
               />
               <Select
@@ -115,6 +139,7 @@ const Reserva = () => {
                 type='date'
                 size='lg'
                 className='bg-white'
+                required
                 value={fecha}
                 onChange={(e) => setFecha(e.target.value)}
               />
@@ -122,6 +147,7 @@ const Reserva = () => {
                 type='time'
                 size='lg'
                 className='bg-white'
+                required
                 value={hora}
                 onChange={(e) => setHora(e.target.value)}
               />

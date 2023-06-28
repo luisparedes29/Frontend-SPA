@@ -2,6 +2,7 @@ import { Button, Label, Modal, TextInput, Select } from 'flowbite-react'
 import React from 'react'
 import { useState, useRef, useContext } from 'react'
 import { TestimoniosContext } from '../context/TestimoniosContext'
+import { toast } from 'react-hot-toast'
 const ModalTestimonios = () => {
   const [openModal, setOpenModal] = useState()
   const sexoRef = useRef(null)
@@ -17,6 +18,16 @@ const ModalTestimonios = () => {
     const nombre = nombreRef.current.value
     const testimonio = testimonioRef.current.value
     console.log({ sexo, nombre, testimonio })
+    if (
+      !sexo ||
+      sexo.trim() < 1 ||
+      !nombre ||
+      nombre.trim() < 1 ||
+      !testimonio ||
+      testimonio.trim() < 1
+    )
+      return toast.error('Todos los campos son obligatorios')
+
     await crearTestimonio({ sexo, nombre, testimonio })
     props.setOpenModal(undefined)
   }
