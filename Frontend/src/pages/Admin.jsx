@@ -11,7 +11,6 @@ import { AuthContext } from '../context/AuthContext'
 
 const Admin = () => {
   const { token } = useContext(AuthContext)
-  console.log(token)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -28,7 +27,7 @@ const Admin = () => {
         <h2 className='text-backPinkOsucuro text-center text-[40px] font-workSans '>
           Panel Admin
         </h2>
-        <section className='flex flex-col gap-10'>
+        <section className='sm:w-3/4 flex flex-col gap-10'>
           <TablaServicios />
           <TablaReservaciones />
           <TablaPromociones />

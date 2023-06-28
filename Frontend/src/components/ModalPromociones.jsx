@@ -14,14 +14,14 @@ const ModalPromociones = ({ isEdit, _id = null }) => {
   const props = { openModal, setOpenModal }
 
   // isEdit ? fetch('').then(() => {}) : fetch('').then(() => {})
-  const handleButtonSubmit = (e) => {
+  const handleButtonSubmit = async (e) => {
     e.preventDefault()
     const descuento = descuentoRef.current.value
     const servicio = selectRef.current.value
     const codigoDescuento = codigoRef.current.value
     isEdit
-      ? editarPromocion(_id, { descuento, servicio, codigoDescuento })
-      : crearPromocion({
+      ? await editarPromocion(_id, { descuento, servicio, codigoDescuento })
+      : await crearPromocion({
           descuento,
           servicio,
           codigoDescuento,
@@ -30,8 +30,8 @@ const ModalPromociones = ({ isEdit, _id = null }) => {
     props.setOpenModal(undefined)
 
     console.log({ descuento, servicio, codigoDescuento })
-    descuentoRef.current.value = null
-    codigoRef.current.value = null
+    descuentoRef.current.value = ''
+    codigoRef.current.value = ''
   }
 
   return (

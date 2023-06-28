@@ -31,17 +31,17 @@ const Header = ({ condicion = false }) => {
             <ul
               className={
                 clase +
-                ' absolute top-0 w-full h-screen flex flex-col items-center justify-center gap-8 bg-marronClaro font-workSans text-letrasHead text-2xl transition-all duration-1000 sm:static sm:flex-row sm:h-auto sm:bg-transparent sm:transition-none z-10'
+                ' absolute top-0 w-full h-screen flex flex-col items-center justify-center gap-8 bg-marronClaro font-workSans text-letrasHead text-2xl transition-all duration-1000 md:static md:flex-row md:h-auto md:bg-transparent md:transition-none md:gap-3 z-10'
               }
             >
               <FaTimes
-                className='absolute top-16 right-10 cursor-pointer text-4xl sm:hidden'
+                className='absolute top-16 right-10 cursor-pointer text-4xl md:hidden'
                 onClick={cambio}
               />
               <NavLink to='/'>
                 <li
                   onClick={cambio}
-                  className='p-4 hover:border-letrasHead hover:border-2 hover:bg-marronOscuro hover:bg-opacity-30 hover:rounded-lg sm:text-lg'
+                  className='p-4 hover:border-letrasHead hover:border-2 hover:bg-marronOscuro hover:bg-opacity-30 hover:rounded-lg md:text-lg'
                 >
                   Inicio
                 </li>
@@ -49,7 +49,7 @@ const Header = ({ condicion = false }) => {
               <NavLink to='/Servicios'>
                 <li
                   onClick={cambio}
-                  className='p-4 hover:border-letrasHead hover:border-2 hover:bg-marronOscuro hover:bg-opacity-30 hover:rounded-lg sm:text-lg'
+                  className='p-4 hover:border-letrasHead hover:border-2 hover:bg-marronOscuro hover:bg-opacity-30 hover:rounded-lg md:text-lg'
                 >
                   Servicios
                 </li>
@@ -57,7 +57,7 @@ const Header = ({ condicion = false }) => {
               <NavLink to='/Promociones'>
                 <li
                   onClick={cambio}
-                  className='p-4  hover:border-letrasHead hover:border-2 hover:bg-marronOscuro hover:bg-opacity-30 hover:rounded-lg sm:text-lg'
+                  className='p-4  hover:border-letrasHead hover:border-2 hover:bg-marronOscuro hover:bg-opacity-30 hover:rounded-lg md:text-lg'
                 >
                   Promociones
                 </li>
@@ -65,7 +65,7 @@ const Header = ({ condicion = false }) => {
               <NavLink to='/Reserva'>
                 <li
                   onClick={cambio}
-                  className='p-4  hover:border-letrasHead hover:border-2 hover:bg-marronOscuro hover:bg-opacity-30 hover:rounded-lg sm:text-lg'
+                  className='p-4  hover:border-letrasHead hover:border-2 hover:bg-marronOscuro hover:bg-opacity-30 hover:rounded-lg md:text-lg'
                 >
                   Reserva
                 </li>
@@ -74,7 +74,7 @@ const Header = ({ condicion = false }) => {
                 <NavLink to='/Admin'>
                   <li
                     onClick={cambio}
-                    className='p-4  hover:border-letrasHead hover:border-2 hover:bg-marronOscuro hover:bg-opacity-30 hover:rounded-lg sm:text-lg'
+                    className='p-4  hover:border-letrasHead hover:border-2 hover:bg-marronOscuro hover:bg-opacity-30 hover:rounded-lg md:text-lg'
                   >
                     ADMIN
                   </li>
@@ -84,7 +84,7 @@ const Header = ({ condicion = false }) => {
                 <div onClick={logout}>
                   <li
                     onClick={cambio}
-                    className='p-4  hover:border-letrasHead hover:border-2 hover:bg-marronOscuro hover:bg-opacity-30 hover:rounded-lg sm:text-lg'
+                    className='p-4  hover:border-letrasHead hover:border-2 hover:bg-marronOscuro hover:bg-opacity-30 hover:rounded-lg md:text-lg'
                   >
                     Logout
                   </li>
@@ -93,7 +93,7 @@ const Header = ({ condicion = false }) => {
                 <NavLink to='/Login'>
                   <li
                     onClick={cambio}
-                    className='p-4  hover:border-letrasHead hover:border-2 hover:bg-marronOscuro hover:bg-opacity-30 hover:rounded-lg sm:text-lg'
+                    className='p-4  hover:border-letrasHead hover:border-2 hover:bg-marronOscuro hover:bg-opacity-30 hover:rounded-lg md:text-lg'
                   >
                     Login
                   </li>
@@ -101,7 +101,7 @@ const Header = ({ condicion = false }) => {
               )}
             </ul>
             <FaBars
-              className='text-4xl text-white cursor-pointer sm:hidden'
+              className='text-4xl text-white cursor-pointer md:hidden'
               onClick={cambio}
             />
           </nav>

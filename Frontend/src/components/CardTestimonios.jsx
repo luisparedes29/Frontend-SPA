@@ -14,7 +14,7 @@ const CardTestimonios = ({ testimonio }) => {
       <Card
         color='white'
         shadow={false}
-        className='w-[300px] max-w-[26rem] p-6 shadow-lg'
+        className='w-[300px] max-w-[26rem] p-6 shadow-lg mb-5'
       >
         <CardHeader
           color='transparent'
@@ -25,7 +25,7 @@ const CardTestimonios = ({ testimonio }) => {
           <Avatar
             size='lg'
             variant='circular'
-            src={testimonio.sexo == 'Femenino' ? perfilMujer : perfilHombre}
+            src={testimonio.sexo == 'Mujer' ? perfilMujer : perfilHombre}
             alt='candice wu'
           />
           <div className='flex w-full flex-col gap-0.5'>

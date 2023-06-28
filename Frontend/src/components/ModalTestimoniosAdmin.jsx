@@ -12,18 +12,18 @@ const ModalTestimoniosAdmin = ({ isEdit, _id = null }) => {
   const sexoRef = useRef(null)
   const testimonioRef = useRef(null)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const sexo = sexoRef.current.value
     const nombre = nombreRef.current.value
     const testimonio = testimonioRef.current.value
     isEdit
-      ? editarTestimonio(_id, {
+      ? await editarTestimonio(_id, {
           sexo,
           nombre,
           testimonio,
         })
-      : crearTestimonio({
+      : await crearTestimonio({
           sexo,
           nombre,
           testimonio,

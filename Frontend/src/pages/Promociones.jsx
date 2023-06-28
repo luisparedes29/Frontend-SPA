@@ -14,7 +14,7 @@ const Promociones = () => {
       <h2 className='text-center font-satisfy text-[35px] text-backPinkOsucuro'>
         Promociones
       </h2>
-      <main className='min-h-[80vh] flex flex-wrap justify-center  '>
+      <main className='min-h-screen flex flex-wrap justify-evenly gap-5 xl:gap-10'>
         {promociones.map((promocion) => (
           <CardPromocion key={promocion._id} promocion={promocion} />
         ))}

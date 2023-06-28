@@ -24,13 +24,13 @@ function TablaReservaciones() {
     useContext(ReservacionesContext)
   return (
     <div>
-      <div className='flex justify-around'>
+      <div className='flex justify-around sm:justify-between'>
         <h3 className='text-center mb-4 text-xl'>Reservaciones</h3>
         <ModalReservaciones isEdit={false} />
       </div>
 
-      <Card className='overflow-scroll h-full w-[350px]'>
-        <table className='w-[350px] min-w-max table-auto text-left'>
+      <Card className='overflow-scroll h-full w-[350px] sm:w-full'>
+        <table className='w-[350px] sm:w-full min-w-max table-auto text-left'>
           <thead>
             <tr>
               {TABLE_HEAD.map((head) => (

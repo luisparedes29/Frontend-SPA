@@ -20,7 +20,7 @@ export default function ModalReservaciones({ isEdit, _id }) {
 
   //isEdit ? fetch('').then(() => {}) : fetch('').then(() => {})
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const nombre = nombreRef.current.value
     const cedula = cedulaRef.current.value
@@ -32,7 +32,7 @@ export default function ModalReservaciones({ isEdit, _id }) {
     const hora = horaRef.current.value
 
     isEdit
-      ? editarReservacion(_id, {
+      ? await editarReservacion(_id, {
           nombre,
           cedula,
           personas,
@@ -42,7 +42,7 @@ export default function ModalReservaciones({ isEdit, _id }) {
           fecha,
           hora,
         })
-      : crearReservacion({
+      : await crearReservacion({
           nombre,
           cedula,
           personas,

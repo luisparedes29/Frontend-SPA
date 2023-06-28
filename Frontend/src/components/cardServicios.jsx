@@ -24,7 +24,7 @@ const CardServicios = ({ servicio }) => {
         </div>
       </CardBody>
       <CardFooter className='pt-0 flex justify-center'>
-        <Link to='/Reserva'>
+        <Link to='/Reserva' className='z-10'>
           <Button className='bg-backPinkOsucuro rounded-3xl'>Reserva</Button>
         </Link>
       </CardFooter>

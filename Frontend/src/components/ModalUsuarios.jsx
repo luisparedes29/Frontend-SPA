@@ -10,19 +10,19 @@ export default function ModalUsuarios({ isEdit, _id = null }) {
   const usuarioRef = useRef(null)
   const contraseñaRef = useRef(null)
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
     const nombre = nombreRef.current.value
     const usuario = usuarioRef.current.value
     const contraseña = contraseñaRef.current.value
 
     isEdit
-      ? editarUsuario(_id, {
+      ? await editarUsuario(_id, {
           nombre,
           usuario,
           contraseña,
         })
-      : crearUsuario({
+      : await crearUsuario({
           nombre,
           usuario,
           contraseña,

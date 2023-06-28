@@ -11,13 +11,13 @@ const ModalTestimonios = () => {
 
   const props = { openModal, setOpenModal }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const sexo = sexoRef.current.value
     const nombre = nombreRef.current.value
     const testimonio = testimonioRef.current.value
     console.log({ sexo, nombre, testimonio })
-    crearTestimonio({ sexo, nombre, testimonio })
+    await crearTestimonio({ sexo, nombre, testimonio })
     props.setOpenModal(undefined)
   }
   return (

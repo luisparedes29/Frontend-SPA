@@ -12,15 +12,15 @@ const Servicios = () => {
   const { testimonios } = useContext(TestimoniosContext)
   const { servicios } = useContext(ServiciosContext)
   return (
-    <div className='flex flex-col gap-8'>
+    <div className='flex flex-col'>
       <Header condicion={true} />
-      <main className='flex flex-col gap-20'>
-        <section id='servicios' className='min-h-screen flex flex-col gap-8'>
-          <header className='flex flex-col gap-4 items-center'>
-            <h2 className='font-satisfy text-center text-[35px] text-backPinkOsucuro'>
+      <main className='flex flex-col'>
+        <section id='servicios' className='min-h-max flex flex-col justify-end'>
+          <header className='flex flex-col gap-4 items-center p-3'>
+            <h2 className='font-satisfy text-center text-[35px] text-backPinkOsucuro md:text-4xl'>
               Servicios
             </h2>
-            <p className='text-center text-[14px] w-[350px]'>
+            <p className='text-center text-[14px] w-[350px] md:w-3/4 md:text-xl md:m-2'>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et
               massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien
               fringilla, mattis ligula consectetur, ultrices mauris. Maecenas
@@ -29,7 +29,7 @@ const Servicios = () => {
           </header>
           <div
             id='lista de servicios'
-            className='w-full min-h-[45vh] bg-servicios-Img bg-no-repeat bg-cover bg-center flex flex-col gap-5 p-7 justify-center items-center'
+            className='w-full min-h-[45vh] sm:min-h-screen lg:min-h-[140vh] bg-servicios-Img bg-no-repeat bg-cover bg-center flex flex-wrap gap-10 p-20 justify-center items-center'
           >
             {servicios ? (
               servicios.map((servicio) => (
@@ -45,13 +45,13 @@ const Servicios = () => {
           <img
             src={waveServicios}
             alt='wave'
-            className='w-full absolute top-[-65px] left-0 right-0 z-10'
+            className='w-full absolute z-0 -top-20 left-0 right-0 sm:-top-36 xl:-top-52'
           />
           <div className='relative flex flex-col gap-5 items-center z-20 pt-7'>
             <h2 className='font-satisfy text-center text-[35px] text-backPinkOsucuro'>
               Testimonios
             </h2>
-            <section className='flex flex-col gap-6 mb-5'>
+            <section className='flex flex-wrap justify-evenly gap-6 mb-5'>
               {testimonios ? (
                 testimonios
                   .slice(0, 3)
