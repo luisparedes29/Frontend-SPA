@@ -7,7 +7,6 @@ import Promociones from './pages/Promociones'
 import Reserva from './pages/Reserva'
 import Servicios from './pages/Servicios'
 import Admin from './pages/Admin'
-import ContextFunctions from './context/ContextFunctions'
 import { PromocionesProvider } from './context/PromocionesContext'
 import { TestimoniosProvider } from './context/TestimoniosContext'
 import { ReservacionesProvider } from './context/ReservacionesContext'
@@ -20,46 +19,41 @@ import { Toaster } from 'react-hot-toast'
 function App() {
   const helmetContext = {}
   return (
-    <ContextFunctions>
-      <AuthProvider>
-        <PromocionesProvider>
-          <TestimoniosProvider>
-            <ReservacionesProvider>
-              <ServiciosProvider>
-                <UsuariosProvider>
-                  <HelmetProvider context={helmetContext}>
-                    <Helmet>
-                      <title>Toque Sanador</title>
-                      <meta
-                        name='description'
-                        content='Spa de masajes ubicado en la ciudad de Valera'
-                      />
-                    </Helmet>
-                    <Toaster />
-                    <BrowserRouter>
-                      <Routes>
-                        <Route path='/' element={<Landing />}></Route>
-                        <Route
-                          path='/Servicios'
-                          element={<Servicios />}
-                        ></Route>
-                        <Route path='/Reserva' element={<Reserva />}></Route>
-                        <Route
-                          path='/Promociones'
-                          element={<Promociones />}
-                        ></Route>
-                        <Route path='/Login' element={<Login />}></Route>
-                        <Route path='/Admin' element={<Admin />}></Route>
-                      </Routes>
-                    </BrowserRouter>
-                  </HelmetProvider>
-                </UsuariosProvider>
-              </ServiciosProvider>
-            </ReservacionesProvider>
-          </TestimoniosProvider>
-        </PromocionesProvider>
-      </AuthProvider>
-    </ContextFunctions>
+    <AuthProvider>
+      <PromocionesProvider>
+        <TestimoniosProvider>
+          <ReservacionesProvider>
+            <ServiciosProvider>
+              <UsuariosProvider>
+                <HelmetProvider context={helmetContext}>
+                  <Helmet>
+                    <title>Toque Sanador</title>
+                    <meta
+                      name='description'
+                      content='Spa de masajes ubicado en la ciudad de Valera'
+                    />
+                  </Helmet>
+                  <Toaster />
+                  <BrowserRouter>
+                    <Routes>
+                      <Route path='/' element={<Landing />}></Route>
+                      <Route path='/Servicios' element={<Servicios />}></Route>
+                      <Route path='/Reserva' element={<Reserva />}></Route>
+                      <Route
+                        path='/Promociones'
+                        element={<Promociones />}
+                      ></Route>
+                      <Route path='/Login' element={<Login />}></Route>
+                      <Route path='/Admin' element={<Admin />}></Route>
+                    </Routes>
+                  </BrowserRouter>
+                </HelmetProvider>
+              </UsuariosProvider>
+            </ServiciosProvider>
+          </ReservacionesProvider>
+        </TestimoniosProvider>
+      </PromocionesProvider>
+    </AuthProvider>
   )
 }
 
