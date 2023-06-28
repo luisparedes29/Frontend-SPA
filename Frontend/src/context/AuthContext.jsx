@@ -12,7 +12,6 @@ const AuthProvider = ({ children }) => {
 
   // Función para establecer el token en el contexto y en el almacenamiento local
   const login = (newToken) => {
-    console.log('Setting token:', newToken)
     localStorage.setItem('token', newToken)
     setToken(newToken)
     toast.success('Loggeado')

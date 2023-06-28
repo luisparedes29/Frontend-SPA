@@ -1,9 +1,33 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext'
 
 const Footer = () => {
   const { logout, token } = useContext(AuthContext)
+
+  const [climaEstado, setClimaEstado] = useState('')
+  const clima = async () => {
+    const url =
+      'https://weatherapi-com.p.rapidapi.com/current.json?q=53.1%2C-0.13'
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': 'df884e8d60msh1d7a5b7ce4173bep11982bjsn363f09a506cf',
+        'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com',
+      },
+    }
+
+    try {
+      const response = await fetch(url, options)
+      const result = await response.json()
+      setClimaEstado(result.current.temp_c)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+  useEffect(() => {
+    clima()
+  }, [])
 
   return (
     <>
@@ -36,6 +60,9 @@ const Footer = () => {
                 <div className='px-5 py-2'>Login</div>
               </Link>
             )}
+            <div className='px-5 py-2'>
+              Temperatura con API: {climaEstado} °C{' '}
+            </div>
           </nav>
           <p className='mt-8 text-base leading-6 text-center'>
             © 2023 Toque Sanador, Inc. Todos los derechos reservados.

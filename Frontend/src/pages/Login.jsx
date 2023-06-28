@@ -32,11 +32,9 @@ const Login = () => {
 
     // Manejar la respuesta
     if (response) {
-      console.log(response)
       const { token } = await response.json()
       login(token)
-      navigate('/Admin')
-      console.log(token) // Almacenar el token en el contexto de autenticación
+      navigate('/Admin') // Almacenar el token en el contexto de autenticación
       // Realizar alguna acción adicional, como redireccionar a la página de inicio
     } else {
       console.log('Error en el inicio de sesión')

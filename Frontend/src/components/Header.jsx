@@ -31,7 +31,7 @@ const Header = ({ condicion = false }) => {
             <ul
               className={
                 clase +
-                ' absolute top-0 w-full h-screen flex flex-col items-center justify-center gap-8 bg-marronClaro font-workSans text-letrasHead text-2xl transition-all duration-1000 md:static md:flex-row md:h-auto md:bg-transparent md:transition-none md:gap-3 z-10'
+                ' absolute top-0 w-full h-screen flex flex-col items-center justify-center gap-8 bg-marronClaro font-workSans text-letrasHead text-2xl transition-all duration-1000 md:static md:flex-row md:h-auto md:bg-transparent md:transition-none md:gap-3 z-20'
               }
             >
               <FaTimes
