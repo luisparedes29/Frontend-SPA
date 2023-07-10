@@ -2,6 +2,11 @@
 
 Este repositorio contiene el código fuente del frontend de un SPA (Single Page Application) desarrollado con tecnologías como Vite, React, Tailwind, react-helmet, React-Hot-Toast, flowbite y material-tailwind. El objetivo de este proyecto es proporcionar una interfaz de usuario moderna y receptiva para la aplicación.
 
+## Usuario Admin
+
+- Usuario: admin, Contraseña: admin
+- Usuario: root, Contraseña: root
+
 ## Tecnologías utilizadas
 
 - **Vite**: Herramienta de construcción rápida para aplicaciones web modernas.
